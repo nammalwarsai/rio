@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rio Skills School – Skills Today, Success Tomorrow</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:    #c0161c;
+    --dark:   #7a0008;
+    --gold:   #f5c518;
+    --white:  #ffffff;
+    --light:  #fff8f0;
+    --accent: #ff6b35;
+    --green:  #2ecc71;
+    --blue:   #3498db;
+    --purple: #9b59b6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--light);
+    color: #222;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #7a0008 0%, #c0161c 45%, #8b0000 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 80px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(245,197,24,.08) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  /* Floating dots */
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    opacity: .25;
+    animation: floatDot 6s ease-in-out infinite;
+  }
+  .dot:nth-child(1)  { width:90px;  height:90px;  background:var(--gold);   top:8%;   left:5%;   animation-delay:0s;   }
+  .dot:nth-child(2)  { width:60px;  height:60px;  background:#fff;          top:20%;  right:8%;  animation-delay:1.2s; }
+  .dot:nth-child(3)  { width:45px;  height:45px;  background:var(--accent); bottom:25%; left:10%; animation-delay:2.4s; }
+  .dot:nth-child(4)  { width:70px;  height:70px;  background:var(--blue);   bottom:15%; right:6%; animation-delay:.8s;  }
+  .dot:nth-child(5)  { width:35px;  height:35px;  background:var(--green);  top:50%;  left:3%;   animation-delay:3s;   }
+  @keyframes floatDot {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%       { transform: translateY(-20px) scale(1.08); }
+  }
+
+  .school-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, #ff6b35, #f5c518, #2ecc71, #3498db, #9b59b6, #ff6b35);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradShift 4s linear infinite, slideDown .9s ease both;
+    letter-spacing: -1px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));
+  }
+  @keyframes gradShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .school-sub {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 8px;
+    animation: slideDown 1s ease .2s both;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+
+  .tagline {
+    font-size: clamp(.9rem, 2vw, 1.15rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 16px;
+    animation: slideDown 1s ease .4s both;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 16px 44px;
+    background: var(--gold);
+    color: #7a0008;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(245,197,24,.4);
+    animation: slideDown 1s ease .6s both, pulse 2.5s ease 1.6s infinite;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 40px rgba(245,197,24,.55);
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(245,197,24,.4); }
+    50%       { box-shadow: 0 8px 48px rgba(245,197,24,.7); }
+  }
+
+  @keyframes slideDown {
+    from { opacity:0; transform:translateY(-30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    padding: 10px 40px;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* ── COURSES ── */
+  .courses {
+    background: var(--light);
+    padding: 90px 20px 70px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .section-title span { color: var(--dark); }
+  .section-line {
+    width: 70px; height: 5px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 10px;
+    margin: 0 auto 50px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,.08);
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardIn .6s ease forwards;
+  }
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 50px rgba(0,0,0,.14);
+  }
+  .card:nth-child(1)  { animation-delay:.05s; }
+  .card:nth-child(2)  { animation-delay:.12s; }
+  .card:nth-child(3)  { animation-delay:.19s; }
+  .card:nth-child(4)  { animation-delay:.26s; }
+  .card:nth-child(5)  { animation-delay:.33s; }
+  .card:nth-child(6)  { animation-delay:.40s; }
+  .card:nth-child(7)  { animation-delay:.47s; }
+  .card:nth-child(8)  { animation-delay:.54s; }
+  .card:nth-child(9)  { animation-delay:.61s; }
+  @keyframes cardIn {
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .card-icon {
+    width: 100%; height: 170px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-icon::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.08));
+  }
+
+  .card-body { padding: 18px 20px 22px; }
+  .card-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: .88rem;
+    color: #666;
+    line-height: 1.55;
+  }
+
+  .badge {
+    position: absolute; top: 14px; right: 14px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: .72rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    z-index: 1;
+  }
+
+  /* card palette */
+  .bg-1 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+  .bg-2 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+  .bg-3 { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+  .bg-4 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .bg-5 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .bg-6 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .bg-7 { background: linear-gradient(135deg, #f7971e, #ffd200); }
+  .bg-8 { background: linear-gradient(135deg, #30cfd0, #667eea); }
+  .bg-9 { background: linear-gradient(135deg, #fd7eb3, #ff9a9e); }
+
+  .badge-red    { background: #c0161c; }
+  .badge-blue   { background: #3498db; }
+  .badge-green  { background: #27ae60; }
+  .badge-purple { background: #8e44ad; }
+  .badge-orange { background: #e67e22; }
+  .badge-teal   { background: #16a085; }
+  .badge-gold   { background: #d4a017; }
+
+  /* ── WHY ── */
+  .why {
+    background: linear-gradient(160deg, #7a0008 0%, #c0161c 100%);
+    padding: 70px 20px;
+    color: #fff;
+  }
+  .why .section-title { color: var(--gold); }
+  .why .section-line  { background: linear-gradient(90deg, var(--gold), #fff); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .why-item {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 18px;
+    padding: 30px 22px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    transition: background .3s, transform .3s;
+  }
+  .why-item:hover {
+    background: rgba(255,255,255,.18);
+    transform: translateY(-5px);
+  }
+  .why-icon { font-size: 2.8rem; margin-bottom: 12px; }
+  .why-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: var(--gold);
+  }
+  .why-text { font-size: .88rem; opacity: .85; line-height: 1.55; }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--light);
+    padding: 80px 20px;
+  }
+  .contact-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 10px 50px rgba(0,0,0,.1);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media(max-width:640px){ .contact-wrap{ grid-template-columns:1fr; } }
+
+  .contact-left {
+    background: linear-gradient(160deg, #7a0008, #c0161c);
+    padding: 50px 36px;
+    color: #fff;
+  }
+  .contact-left h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .contact-left .sub {
+    font-size: .9rem;
+    opacity: .8;
+    margin-bottom: 36px;
+  }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .info-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: rgba(255,255,255,.15);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .info-label { font-size: .78rem; opacity: .7; margin-bottom: 2px; }
+  .info-val { font-weight: 700; font-size: .97rem; }
+
+  .contact-right { padding: 50px 36px; }
+  .contact-right h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: .82rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem;
+    transition: border-color .2s;
+    outline: none;
+    background: #fafafa;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--red); background: #fff; }
+  .form-group textarea { resize: none; height: 90px; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, var(--dark), var(--red));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .2s, transform .2s;
+    letter-spacing: .5px;
+  }
+  .btn-submit:hover { opacity: .9; transform: translateY(-2px); }
+
+  /* ── DIRECTOR ── */
+  .director {
+    background: #fff;
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .director-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(160deg, #7a0008, #c0161c);
+    color: #fff;
+    padding: 44px 60px;
+    border-radius: 28px;
+    box-shadow: 0 16px 60px rgba(192,22,28,.3);
+    max-width: 480px;
+  }
+  .avatar {
+    width: 90px; height: 90px;
+    background: rgba(255,255,255,.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem;
+    border: 3px solid var(--gold);
+  }
+  .dir-label { font-size: .82rem; opacity: .75; letter-spacing: 2px; text-transform: uppercase; }
+  .dir-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+  .dir-qual { font-size: .9rem; opacity: .82; line-height: 1.7; }
+  .motto {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 7px 22px;
+    background: var(--gold);
+    color: var(--dark);
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: .9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a0003;
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: .85rem;
+  }
+  footer strong { color: var(--gold); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(122,0,8,.92);
+    backdrop-filter: blur(12px);
+    padding: 14px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    animation: navDrop .6s ease both;
+  }
+  @keyframes navDrop {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .nav-logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: .5px;
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  @media(max-width:560px){ .nav-links { display: none; } }
+
+  /* ── STATS ── */
+  .stats {
+    background: var(--light);
+    padding: 60px 20px 10px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stat-box {
+    text-align: center;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.07);
+    border-top: 4px solid var(--red);
+    transition: transform .3s;
+  }
+  .stat-box:hover { transform: translateY(-5px); }
+  .stat-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--red);
+  }
+  .stat-label { font-size: .88rem; color: #777; font-weight: 600; margin-top: 4px; }
+
+  /* scroll reveal helper */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">🎓 Rio Skills School</a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#director">Director</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  <div class="dot"></div><div class="dot"></div>
+
+  <p class="tagline">✨ Skills Today.. Success Tomorrow ✨</p>
+  <h1 class="school-name">Rio</h1>
+  <h2 class="school-sub">Skills School</h2>
+  <a href="#courses" class="hero-cta">Explore Our Courses →</a>
+
+  <div class="hero-badge">🏆 Master The Future</div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-num">9+</div><div class="stat-label">Skill Programs</div></div>
+    <div class="stat-box"><div class="stat-num">100+</div><div class="stat-label">Happy Students</div></div>
+    <div class="stat-box"><div class="stat-num">6+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Certified Instructors</div></div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <h2 class="section-title reveal">Our <span>Programs</span></h2>
+  <div class="section-line reveal"></div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-icon bg-1">✍️</div>
+      <span class="badge badge-red">Art</span>
+      <div class="card-body">
+        <div class="card-title">Calligraphy</div>
+        <div class="card-desc">Master the ancient art of beautiful handwriting. Develop precision, patience, and a lifelong creative skill.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-2">🎨</div>
+      <span class="badge badge-blue">Art</span>
+      <div class="card-body">
+        <div class="card-title">Drawing</div>
+        <div class="card-desc">Unleash creativity through sketching, shading, and illustration. From basics to advanced techniques.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-3">♟️</div>
+      <span class="badge badge-green">Mind</span>
+      <div class="card-body">
+        <div class="card-title">Chess</div>
+        <div class="card-desc">Sharpen strategic thinking and concentration. Build analytical skills through the royal game.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-4">💃</div>
+      <span class="badge badge-purple">Dance</span>
+      <div class="card-body">
+        <div class="card-title">Classical Dance</div>
+        <div class="card-desc">Learn Bharatanatyam and classical Indian dance forms. Connect with rich cultural heritage through movement.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-5">🥋</div>
+      <span class="badge badge-blue">Martial Arts</span>
+      <div class="card-body">
+        <div class="card-title">Karate</div>
+        <div class="card-desc">Build discipline, self-defense skills and confidence. Structured belt progression for all ages.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-6">🕺</div>
+      <span class="badge badge-teal">Dance</span>
+      <div class="card-body">
+        <div class="card-title">Western Dance</div>
+        <div class="card-desc">Hip-hop, contemporary, and freestyle. Express yourself through modern dance styles and rhythms.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-7">🔢</div>
+      <span class="badge badge-gold">Maths</span>
+      <div class="card-body">
+        <div class="card-title">Abacus Maths</div>
+        <div class="card-desc">Develop lightning-fast mental arithmetic using the ancient abacus method. Boost concentration and memory.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-8">🗣️</div>
+      <span class="badge badge-blue">Language</span>
+      <div class="card-body">
+        <div class="card-title">Spoken English</div>
+        <div class="card-desc">Build fluency, confidence, and communication skills. Practical conversations for real-world success.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon bg-9">🎵</div>
+      <span class="badge badge-purple">Music</span>
+      <div class="card-body">
+        <div class="card-title">Music</div>
+        <div class="card-desc">Vocal training and instruments for all levels. Cultivate rhythm, melody, and musical expression.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <h2 class="section-title reveal">Why Choose <span style="color:#fff">Rio?</span></h2>
+  <div class="section-line reveal"></div>
+  <div class="why-grid reveal">
+    <div class="why-item">
+      <div class="why-icon">🏅</div>
+      <div class="why-title">Expert Instructors</div>
+      <div class="why-text">Certified, passionate teachers with years of training experience in their field.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">👶</div>
+      <div class="why-title">All Age Groups</div>
+      <div class="why-text">Programs tailored for children, teens and adults at every skill level.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📈</div>
+      <div class="why-title">Holistic Growth</div>
+      <div class="why-text">We nurture creativity, discipline, confidence and cognitive development together.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🎯</div>
+      <div class="why-title">Structured Curriculum</div>
+      <div class="why-text">Step-by-step learning paths with regular assessments and progress tracking.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🌟</div>
+      <div class="why-title">Proven Results</div>
+      <div class="why-text">Hundreds of students have excelled in competitions and developed lifelong skills.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTOR -->
+<section class="director" id="director">
+  <h2 class="section-title reveal">Meet Our <span>Director</span></h2>
+  <div class="section-line reveal"></div>
+  <div class="director-card reveal">
+    <div class="avatar">👨‍🏫</div>
+    <div class="dir-label">Founder & Director</div>
+    <div class="dir-name">V. Ramesh</div>
+    <div class="dir-qual">
+      M.A &nbsp;|&nbsp; B.Ed &nbsp;|&nbsp; T.T.C<br>
+      Diploma in Calligraphy
+    </div>
+    <span class="motto">🏆 Master the Future</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="section-title reveal">Get In <span>Touch</span></h2>
+  <div class="section-line reveal"></div>
+  <div class="contact-wrap reveal">
+
+    <div class="contact-left">
+      <h2>Rio Skills School</h2>
+      <p class="sub">Enroll your child today and watch them shine!</p>
+
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Address</div>
+          <div class="info-val">Beside Y.S.R Statue, A.Konduru Road, Vissannapeta</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-label">Phone</div>
+          <div class="info-val">80 966 544 01</div>
+          <div class="info-val">90 520 54 260</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">⏰</div>
+        <div>
+          <div class="info-label">Timings</div>
+          <div class="info-val">Mon – Sat &nbsp; 9 AM – 6 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3>Send an Enquiry</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Ravi Kumar">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="e.g. 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Course Interest</label>
+        <select>
+          <option value="">— Select a course —</option>
+          <option>Calligraphy</option>
+          <option>Drawing</option>
+          <option>Chess</option>
+          <option>Classical Dance</option>
+          <option>Karate</option>
+          <option>Western Dance</option>
+          <option>Abacus Maths</option>
+          <option>Spoken English</option>
+          <option>Music</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (optional)</label>
+        <textarea placeholder="Any questions or details..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="alert('Thank you! We will contact you shortly. 🎉')">Submit Enquiry ✉️</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Rio Skills School</strong> — Vissannapeta &nbsp;|&nbsp; Skills Today, Success Tomorrow</p>
+  <p style="margin-top:6px;">📞 80 966 544 01 &nbsp;|&nbsp; 90 520 54 260</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
