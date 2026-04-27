@@ -29,7 +29,7 @@
     overflow-x: hidden;
   }
 
-  /* ── HERO ── */
+
   .hero {
     position: relative;
     background: linear-gradient(160deg, #7a0008 0%, #c0161c 45%, #8b0000 100%);
@@ -537,6 +537,183 @@
     transition: opacity .7s ease, transform .7s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── IIT FOUNDATION ── */
+  .iit-foundation {
+    background: linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    padding: 90px 20px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .iit-foundation::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(245,197,24,.08) 0%, transparent 50%),
+      radial-gradient(circle at 85% 80%, rgba(192,22,28,.1) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .iit-foundation .section-title { color: var(--gold); }
+  .iit-foundation .section-title span { color: #fff; }
+  .iit-foundation .section-line { background: linear-gradient(90deg, var(--gold), var(--accent)); }
+
+  .iit-subtitle {
+    text-align: center;
+    color: rgba(255,255,255,.75);
+    font-size: 1.05rem;
+    max-width: 680px;
+    margin: -30px auto 50px;
+    line-height: 1.7;
+  }
+  .iit-subtitle strong {
+    color: var(--gold);
+    font-weight: 800;
+  }
+
+  .iit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+  }
+
+  .iit-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 22px;
+    padding: 0;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform .35s, box-shadow .35s, border-color .35s;
+    position: relative;
+  }
+  .iit-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    border-color: rgba(245,197,24,.35);
+  }
+
+  .iit-card-header {
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .iit-card-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 20%; right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+  }
+
+  .iit-class-badge {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-family: 'Baloo 2', cursive;
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .iit-class-7 .iit-class-badge { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #0a3d2a; }
+  .iit-class-8 .iit-class-badge { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #0a2a4a; }
+  .iit-class-9 .iit-class-badge { background: linear-gradient(135deg, #f093fb, #f5576c); color: #3d0a2a; }
+  .iit-class-10 .iit-class-badge { background: linear-gradient(135deg, #f7971e, #ffd200); color: #3d2a0a; }
+
+  .iit-class-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .iit-class-label {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,.9);
+    margin-top: 4px;
+  }
+
+  .iit-card-body {
+    padding: 20px 24px 28px;
+  }
+  .iit-card-body ul {
+    list-style: none;
+    padding: 0;
+  }
+  .iit-card-body li {
+    position: relative;
+    padding: 6px 0 6px 24px;
+    font-size: .88rem;
+    color: rgba(255,255,255,.78);
+    line-height: 1.5;
+  }
+  .iit-card-body li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: .7rem;
+    top: 9px;
+  }
+
+  .iit-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 30px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  .iit-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 50px;
+    padding: 10px 22px;
+    color: rgba(255,255,255,.85);
+    font-size: .88rem;
+    font-weight: 700;
+    transition: background .3s, transform .3s;
+  }
+  .iit-feature:hover {
+    background: rgba(245,197,24,.12);
+    transform: translateY(-2px);
+  }
+  .iit-feature-icon {
+    font-size: 1.2rem;
+  }
+
+  .iit-cta-wrap {
+    text-align: center;
+  }
+  .iit-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+    color: #fff;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(245,197,24,.3);
+    transition: transform .25s, box-shadow .25s;
+    letter-spacing: .5px;
+  }
+  .iit-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 44px rgba(245,197,24,.45);
+  }
 </style>
 </head>
 <body>
@@ -546,6 +723,7 @@
   <a class="nav-logo" href="#">🎓 Rio Skills School</a>
   <ul class="nav-links">
     <li><a href="#courses">Courses</a></li>
+    <li><a href="#iit-foundation">IIT Foundation</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#director">Director</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -666,6 +844,94 @@
   </div>
 </section>
 
+<!-- IIT FOUNDATION -->
+<section class="iit-foundation" id="iit-foundation">
+  <h2 class="section-title reveal">IIT <span>Foundation</span></h2>
+  <div class="section-line reveal"></div>
+  <p class="iit-subtitle reveal">Building <strong>future IITians</strong> from the ground up. Our structured foundation program sharpens analytical thinking, problem-solving, and conceptual mastery for <strong>7th to 10th class</strong> students.</p>
+
+  <div class="iit-grid reveal">
+
+    <div class="iit-card iit-class-7">
+      <div class="iit-card-header">
+        <div class="iit-class-badge">Class 7</div>
+        <div class="iit-class-num">7<sup style="font-size:1.2rem">th</sup></div>
+        <div class="iit-class-label">Foundation Starter</div>
+      </div>
+      <div class="iit-card-body">
+        <ul>
+          <li>Strong fundamentals in Maths & Science</li>
+          <li>Logical reasoning & mental aptitude</li>
+          <li>Introduction to Olympiad patterns</li>
+          <li>NCERT+ advanced problem sets</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="iit-card iit-class-8">
+      <div class="iit-card-header">
+        <div class="iit-class-badge">Class 8</div>
+        <div class="iit-class-num">8<sup style="font-size:1.2rem">th</sup></div>
+        <div class="iit-class-label">Concept Builder</div>
+      </div>
+      <div class="iit-card-body">
+        <ul>
+          <li>In-depth Physics & Chemistry concepts</li>
+          <li>Algebra, geometry & number theory</li>
+          <li>National Olympiad preparation</li>
+          <li>Periodic tests & performance tracking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="iit-card iit-class-9">
+      <div class="iit-card-header">
+        <div class="iit-class-badge">Class 9</div>
+        <div class="iit-class-num">9<sup style="font-size:1.2rem">th</sup></div>
+        <div class="iit-class-label">Advanced Prep</div>
+      </div>
+      <div class="iit-card-body">
+        <ul>
+          <li>Board + competitive exam dual focus</li>
+          <li>JEE-level problem introduction</li>
+          <li>NTSE & science Olympiad coaching</li>
+          <li>Weekly mock tests & doubt sessions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="iit-card iit-class-10">
+      <div class="iit-card-header">
+        <div class="iit-class-badge">Class 10</div>
+        <div class="iit-class-num">10<sup style="font-size:1.2rem">th</sup></div>
+        <div class="iit-class-label">Board + IIT Bridge</div>
+      </div>
+      <div class="iit-card-body">
+        <ul>
+          <li>Board exam mastery + IIT bridge course</li>
+          <li>Advanced Physics, Chemistry & Maths</li>
+          <li>Full-length mock exams & analysis</li>
+          <li>Personal mentoring & career guidance</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="iit-features reveal">
+    <div class="iit-feature"><span class="iit-feature-icon">🧪</span> Expert Faculty</div>
+    <div class="iit-feature"><span class="iit-feature-icon">📚</span> Structured Curriculum</div>
+    <div class="iit-feature"><span class="iit-feature-icon">📝</span> Regular Mock Tests</div>
+    <div class="iit-feature"><span class="iit-feature-icon">🎯</span> Doubt Clearing Sessions</div>
+    <div class="iit-feature"><span class="iit-feature-icon">📊</span> Performance Tracking</div>
+    <div class="iit-feature"><span class="iit-feature-icon">🏆</span> Olympiad Prep</div>
+  </div>
+
+  <div class="iit-cta-wrap reveal">
+    <a href="#contact" class="iit-cta">Enroll for IIT Foundation →</a>
+  </div>
+</section>
+
 <!-- WHY US -->
 <section class="why" id="why">
   <h2 class="section-title reveal">Why Choose <span style="color:#fff">Rio?</span></h2>
@@ -774,6 +1040,7 @@
           <option>Abacus Maths</option>
           <option>Spoken English</option>
           <option>Music</option>
+          <option>IIT Foundation</option>
         </select>
       </div>
       <div class="form-group">
