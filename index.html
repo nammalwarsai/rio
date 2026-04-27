@@ -476,11 +476,17 @@
 
   /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     background: rgba(122,0,8,.92);
     backdrop-filter: blur(12px);
     padding: 14px 30px;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid rgba(255,255,255,.08);
     animation: navDrop .6s ease both;
   }
@@ -495,6 +501,7 @@
     color: var(--gold);
     text-decoration: none;
     letter-spacing: .5px;
+    z-index: 1002;
   }
   .nav-links { display: flex; gap: 24px; list-style: none; }
   .nav-links a {
@@ -518,7 +525,7 @@
     border: 2px solid rgba(255,255,255,.15);
     border-radius: 12px;
     cursor: pointer;
-    z-index: 200;
+    z-index: 10002;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
     box-shadow: 0 4px 16px rgba(0,0,0,.35);
@@ -572,26 +579,36 @@
 
   /* ── MOBILE NAV OVERLAY ── */
   @media (max-width: 768px) {
-    .hamburger { display: flex; }
+    .hamburger {
+      display: flex;
+    }
 
     .nav-links {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(170deg, rgba(122,0,8,.97) 0%, rgba(60,0,4,.98) 100%);
-      backdrop-filter: blur(20px);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000000;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 0;
       padding: 80px 20px 40px;
-      z-index: 150;
+      z-index: 10001;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-20px);
       transition: opacity .4s cubic-bezier(.4,.01,.165,.99),
                   visibility .4s,
                   transform .4s cubic-bezier(.4,.01,.165,.99);
+      overflow-y: auto;
     }
+
     .nav-links.open {
       opacity: 1;
       visibility: visible;
@@ -1674,7 +1691,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 Rio Skills School. All rights reserved.</p>  
+  <p>&copy; 2026 Rio Skills School. All rights reserved.</p>
   <p>Designed with ❤️ by Rio Team</p>
 </footer>
 
@@ -1712,6 +1729,16 @@
   // Close menu on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+  });
+
+  // Close menu when clicking on the overlay background (not on a link)
+  navLinks.addEventListener('click', (e) => {
+    if (e.target === navLinks) {
       navLinks.classList.remove('open');
       hamburger.classList.remove('active');
       hamburger.setAttribute('aria-expanded', 'false');
