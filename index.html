@@ -498,7 +498,214 @@
     transition: color .2s;
   }
   .nav-links a:hover { color: var(--gold); }
-  @media(max-width:560px){ .nav-links { display: none; } }
+
+  /* ── HAMBURGER BUTTON ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 200;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--white);
+    border-radius: 3px;
+    transition: transform .35s cubic-bezier(.4,.01,.165,.99),
+                opacity .2s ease,
+                background .3s ease;
+    position: relative;
+  }
+  .hamburger span:nth-child(1) { margin-bottom: 6px; }
+  .hamburger span:nth-child(3) { margin-top: 6px; }
+
+  /* Hamburger active (X) */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+    background: var(--gold);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    background: var(--gold);
+  }
+
+  /* ── MOBILE NAV OVERLAY ── */
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(170deg, rgba(122,0,8,.97) 0%, rgba(60,0,4,.98) 100%);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 80px 20px 40px;
+      z-index: 150;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: opacity .4s cubic-bezier(.4,.01,.165,.99),
+                  visibility .4s,
+                  transform .4s cubic-bezier(.4,.01,.165,.99);
+    }
+    .nav-links.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .nav-links.open li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-links.open li:nth-child(1) { transition-delay: .08s; }
+    .nav-links.open li:nth-child(2) { transition-delay: .14s; }
+    .nav-links.open li:nth-child(3) { transition-delay: .20s; }
+    .nav-links.open li:nth-child(4) { transition-delay: .26s; }
+    .nav-links.open li:nth-child(5) { transition-delay: .32s; }
+    .nav-links.open li:nth-child(6) { transition-delay: .38s; }
+
+    .nav-links a {
+      display: block;
+      padding: 18px 10px;
+      font-size: 1.25rem;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      color: rgba(255,255,255,.9);
+      letter-spacing: .5px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: color .2s, background .2s;
+    }
+    .nav-links li:last-child a { border-bottom: none; }
+    .nav-links a:hover,
+    .nav-links a:active {
+      color: var(--gold);
+      background: rgba(245,197,24,.06);
+    }
+  }
+
+  /* ── RESPONSIVE BREAKPOINTS ── */
+
+  /* Large tablets & small laptops */
+  @media (max-width: 1024px) {
+    .se-hero-grid { gap: 30px; }
+    .iit-grid { gap: 22px; }
+    .director-card { padding: 36px 40px; }
+  }
+
+  /* Tablets */
+  @media (max-width: 768px) {
+    .hero { padding: 80px 16px 70px; min-height: 90vh; }
+    .school-name { font-size: clamp(2.5rem, 12vw, 4.5rem); }
+    .hero-cta { padding: 14px 36px; font-size: 1rem; }
+    .hero-badge { padding: 8px 28px; font-size: .85rem; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+    .iit-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .contact-wrap { grid-template-columns: 1fr; }
+    .contact-left { padding: 36px 28px; }
+    .contact-right { padding: 36px 28px; }
+
+    .director-card { padding: 36px 32px; max-width: 400px; }
+  }
+
+  /* Small phones */
+  @media (max-width: 480px) {
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 1.15rem; }
+
+    .hero { padding: 70px 14px 60px; min-height: 85vh; }
+    .school-name { font-size: clamp(2rem, 14vw, 3.5rem); }
+    .school-sub { font-size: clamp(1.1rem, 5vw, 1.8rem); }
+    .tagline { font-size: clamp(.75rem, 2.5vw, .95rem); letter-spacing: 2px; }
+    .hero-cta { padding: 12px 28px; font-size: .95rem; margin-top: 28px; }
+    .hero-badge { padding: 7px 22px; font-size: .78rem; }
+
+    .courses { padding: 70px 14px 50px; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .card-icon { height: 140px; font-size: 3.8rem; }
+
+    .stats { padding: 40px 14px 10px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .stat-box { padding: 20px 12px; }
+    .stat-num { font-size: 1.8rem; }
+
+    .why { padding: 50px 14px; }
+    .why-grid { grid-template-columns: 1fr; gap: 16px; }
+    .why-item { padding: 24px 18px; }
+
+    .iit-foundation { padding: 70px 14px 60px; }
+    .iit-grid { grid-template-columns: 1fr; gap: 18px; }
+    .iit-features { gap: 10px 14px; }
+    .iit-feature { padding: 8px 16px; font-size: .82rem; }
+    .iit-modes-banner .mode-pill { padding: 10px 20px; font-size: .9rem; }
+
+    .spoken-english { padding: 70px 14px 60px; }
+    .se-hero-grid { gap: 28px; }
+    .se-content h3 { font-size: 1.4rem; }
+    .se-features { gap: 10px 14px; }
+    .se-feature { padding: 8px 16px; font-size: .82rem; }
+    .se-online-badge { padding: 10px 20px; font-size: .92rem; }
+    .se-step { padding: 16px 18px; }
+
+    .director { padding: 50px 14px; }
+    .director-card { padding: 32px 24px; }
+    .dir-name { font-size: 1.6rem; }
+    .avatar { width: 70px; height: 70px; font-size: 2.2rem; }
+
+    .contact { padding: 50px 14px; }
+    .contact-left { padding: 30px 20px; }
+    .contact-left h2 { font-size: 1.5rem; }
+    .contact-right { padding: 30px 20px; }
+    .contact-right h3 { font-size: 1.2rem; }
+
+    .section-title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+    .section-line { margin-bottom: 35px; }
+
+    .iit-cta, .se-cta, .hero-cta { padding: 14px 32px; font-size: 1rem; }
+
+    footer { padding: 20px 14px; font-size: .8rem; }
+  }
+
+  /* Tiny screens */
+  @media (max-width: 360px) {
+    .school-name { font-size: 2rem; }
+    .school-sub { font-size: 1rem; }
+    .hero-cta { padding: 10px 24px; font-size: .88rem; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-box { padding: 16px 10px; }
+    .contact-left h2 { font-size: 1.3rem; }
+  }
+
+  /* Body scroll lock when menu open */
+  body.nav-open { overflow: hidden; }
 
   /* ── STATS ── */
   .stats {
@@ -779,6 +986,231 @@
   .mode-pill-icon {
     font-size: 1.3rem;
   }
+
+  /* ── SPOKEN ENGLISH ── */
+  .spoken-english {
+    background: linear-gradient(160deg, #0a2e38 0%, #0d4f5f 40%, #0a3a48 100%);
+    padding: 90px 20px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .spoken-english::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 10% 25%, rgba(52,152,219,.12) 0%, transparent 50%),
+      radial-gradient(circle at 90% 75%, rgba(46,204,113,.1) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,.02) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .spoken-english .section-title { color: #5ddef4; }
+  .spoken-english .section-title span { color: #fff; }
+  .spoken-english .section-line { background: linear-gradient(90deg, #5ddef4, #2ecc71); }
+
+  .se-subtitle {
+    text-align: center;
+    color: rgba(255,255,255,.78);
+    font-size: 1.08rem;
+    max-width: 720px;
+    margin: -30px auto 16px;
+    line-height: 1.7;
+  }
+  .se-subtitle strong { color: #5ddef4; font-weight: 800; }
+
+  .se-online-badge-wrap {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .se-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 36px;
+    border-radius: 60px;
+    background: linear-gradient(135deg, rgba(52,152,219,.22), rgba(93,222,244,.12));
+    border: 2px solid rgba(93,222,244,.4);
+    color: #fff;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+    animation: seBadgePulse 3s ease-in-out infinite;
+  }
+  .se-online-badge .se-live-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #2ecc71;
+    animation: modePulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(46,204,113,.6);
+  }
+  @keyframes seBadgePulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(93,222,244,.15); }
+    50%      { box-shadow: 0 0 40px rgba(93,222,244,.3); }
+  }
+
+  .se-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1060px;
+    margin: 0 auto 50px;
+    align-items: center;
+  }
+  @media(max-width:768px) { .se-hero-grid { grid-template-columns: 1fr; } }
+
+  .se-content h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .se-content h3 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #5ddef4, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .se-content p {
+    color: rgba(255,255,255,.75);
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .se-highlights {
+    list-style: none;
+    padding: 0;
+  }
+  .se-highlights li {
+    position: relative;
+    padding: 10px 0 10px 36px;
+    font-size: .92rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  .se-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5ddef4, #2ecc71);
+    opacity: .25;
+  }
+  .se-highlights li::after {
+    content: '✓';
+    position: absolute;
+    left: 5px; top: 13px;
+    color: #5ddef4;
+    font-size: .8rem;
+    font-weight: 800;
+  }
+
+  .se-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .se-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px;
+    padding: 20px 24px;
+    backdrop-filter: blur(8px);
+    transition: transform .35s, border-color .35s, background .35s;
+  }
+  .se-step:hover {
+    transform: translateX(8px);
+    border-color: rgba(93,222,244,.35);
+    background: rgba(93,222,244,.08);
+  }
+  .se-step-num {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .se-step:nth-child(1) .se-step-num { background: linear-gradient(135deg, #3498db, #5ddef4); }
+  .se-step:nth-child(2) .se-step-num { background: linear-gradient(135deg, #9b59b6, #f093fb); }
+  .se-step:nth-child(3) .se-step-num { background: linear-gradient(135deg, #2ecc71, #43e97b); }
+  .se-step:nth-child(4) .se-step-num { background: linear-gradient(135deg, #f5c518, #ff6b35); }
+  .se-step-info {
+    flex: 1;
+  }
+  .se-step-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .se-step-desc {
+    font-size: .82rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.4;
+  }
+
+  .se-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 24px;
+    max-width: 950px;
+    margin: 0 auto 40px;
+  }
+  .se-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 50px;
+    padding: 10px 22px;
+    color: rgba(255,255,255,.88);
+    font-size: .88rem;
+    font-weight: 700;
+    transition: background .3s, transform .3s;
+  }
+  .se-feature:hover {
+    background: rgba(93,222,244,.12);
+    transform: translateY(-2px);
+  }
+  .se-feature-icon {
+    font-size: 1.2rem;
+  }
+
+  .se-cta-wrap {
+    text-align: center;
+  }
+  .se-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background: linear-gradient(90deg, #5ddef4, #2ecc71);
+    color: #0a2e38;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(93,222,244,.25);
+    transition: transform .25s, box-shadow .25s;
+    letter-spacing: .5px;
+  }
+  .se-cta:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 44px rgba(93,222,244,.4);
+  }
 </style>
 </head>
 <body>
@@ -786,9 +1218,15 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">🎓 Rio Skills School</a>
-  <ul class="nav-links">
+  <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#courses">Courses</a></li>
     <li><a href="#iit-foundation">IIT Foundation</a></li>
+    <li><a href="#spoken-english">Spoken English</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#director">Director</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1008,6 +1446,81 @@
   </div>
 </section>
 
+<!-- SPOKEN ENGLISH -->
+<section class="spoken-english" id="spoken-english">
+  <h2 class="section-title reveal">Spoken <span>English</span></h2>
+  <div class="section-line reveal"></div>
+  <p class="se-subtitle reveal">Build <strong>fluency, confidence & real-world communication skills</strong> from the comfort of your home. Our Spoken English program is taught <strong>exclusively online</strong> — practical conversations for real-world success.</p>
+
+  <div class="se-online-badge-wrap reveal">
+    <div class="se-online-badge">
+      <span class="se-live-dot"></span>
+      💻 100% Online — Live Interactive Classes
+    </div>
+  </div>
+
+  <div class="se-hero-grid reveal">
+    <div class="se-content">
+      <h3>Speak English with <em>Confidence & Clarity</em></h3>
+      <p>Our structured online program takes you from hesitant speaker to confident communicator. Through live interactive sessions, role-plays, and real-world scenarios, you'll build the fluency needed to succeed in interviews, presentations, and everyday conversations.</p>
+      <ul class="se-highlights">
+        <li>Live online classes — learn from anywhere</li>
+        <li>Small batch sizes for personal attention</li>
+        <li>Real-world conversation practice daily</li>
+        <li>Grammar, vocabulary & pronunciation mastery</li>
+        <li>Interview & public speaking preparation</li>
+        <li>Flexible timings for students & professionals</li>
+      </ul>
+    </div>
+
+    <div class="se-visual">
+      <div class="se-step">
+        <div class="se-step-num">01</div>
+        <div class="se-step-info">
+          <div class="se-step-title">Foundation & Basics</div>
+          <div class="se-step-desc">Grammar essentials, vocabulary building & pronunciation drills</div>
+        </div>
+      </div>
+      <div class="se-step">
+        <div class="se-step-num">02</div>
+        <div class="se-step-info">
+          <div class="se-step-title">Conversation Practice</div>
+          <div class="se-step-desc">Daily speaking exercises, role-plays & real-world scenarios</div>
+        </div>
+      </div>
+      <div class="se-step">
+        <div class="se-step-num">03</div>
+        <div class="se-step-info">
+          <div class="se-step-title">Fluency Development</div>
+          <div class="se-step-desc">Group discussions, debates & storytelling sessions</div>
+        </div>
+      </div>
+      <div class="se-step">
+        <div class="se-step-num">04</div>
+        <div class="se-step-info">
+          <div class="se-step-title">Advanced Communication</div>
+          <div class="se-step-desc">Interview prep, presentations & professional English skills</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="se-features reveal">
+    <div class="se-feature"><span class="se-feature-icon">💻</span> 100% Online Classes</div>
+    <div class="se-feature"><span class="se-feature-icon">🎙️</span> Live Interactive Sessions</div>
+    <div class="se-feature"><span class="se-feature-icon">👥</span> Small Batch Sizes</div>
+    <div class="se-feature"><span class="se-feature-icon">📖</span> Structured Curriculum</div>
+    <div class="se-feature"><span class="se-feature-icon">🗓️</span> Flexible Timings</div>
+    <div class="se-feature"><span class="se-feature-icon">🎯</span> Real-World Focus</div>
+    <div class="se-feature"><span class="se-feature-icon">📝</span> Regular Assessments</div>
+    <div class="se-feature"><span class="se-feature-icon">🏆</span> Certification</div>
+  </div>
+
+  <div class="se-cta-wrap reveal">
+    <a href="#contact" class="se-cta">Enroll for Spoken English →</a>
+  </div>
+</section>
+
 <!-- WHY US -->
 <section class="why" id="why">
   <h2 class="section-title reveal">Why Choose <span style="color:#fff">Rio?</span></h2>
@@ -1144,6 +1657,37 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
+
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger-btn');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+  });
+
+  // Close menu when a nav link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+  });
 </script>
 </body>
 </html>
