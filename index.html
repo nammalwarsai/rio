@@ -5,6 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rio Skills School – Skills Today, Success Tomorrow</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // ===============================================================
+  // EMAIL SETUP — DO THIS ONCE (takes ~5 minutes):
+  // ===============================================================
+  // 1. Go to https://www.emailjs.com  → Sign Up (free)
+  // 2. Dashboard → Email Services → Add New Service
+  //    → Choose Gmail → connect nammalwarsai1@gmail.com → Save
+  //    → Copy the Service ID  (looks like: service_abc1234)
+  // 3. Dashboard → Email Templates → Create New Template
+  //    → Set "To Email" = nammalwarsai1@gmail.com
+  //    → Paste this template body:
+  //
+  //       New Enquiry — Rio Skills School
+  //
+  //       Name:    {{from_name}}
+  //       Phone:   {{phone}}
+  //       Course:  {{course}}
+  //       Message: {{message}}
+  //
+  //    → Save → Copy Template ID (looks like: template_xyz5678)
+  // 4. Dashboard → Account → General → Public Key (copy it)
+  // 5. Replace the three placeholder strings below with your values
+  // ===============================================================
+
+  const EMAILJS_PUBLIC_KEY  = 'MuVxvwd1td-HnO_tc';   // ← replace
+  const EMAILJS_SERVICE_ID  = 'service_5u3w9km';   // ← replace
+  const EMAILJS_TEMPLATE_ID = 'template_tponigi';  // ← replace
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+</script>
+
 <style>
   :root {
     --red:    #c0161c;
@@ -17,1724 +51,256 @@
     --blue:   #3498db;
     --purple: #9b59b6;
   }
-
-   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-   /* Enhanced global styles */
-   html {
-     scroll-behavior: smooth;
-     font-feature-settings: 'kern' 1, 'liga' 1;
-   }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
-   body {
-     font-family: 'Nunito', sans-serif;
-     background: linear-gradient(180deg, var(--light) 0%, rgba(255,248,240,.95) 50%, var(--light) 100%);
-     color: #222;
-     overflow-x: hidden;
-     position: relative;
-   }
-
-   body::before {
-     content: '';
-     position: fixed;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background-image:
-       radial-gradient(circle at 25% 25%, rgba(245,197,24,.03) 2px, transparent 2px),
-       radial-gradient(circle at 75% 75%, rgba(255,107,53,.02) 1px, transparent 1px),
-       radial-gradient(circle at 50% 50%, rgba(52,152,219,.02) 1.5px, transparent 1.5px);
-     background-size: 60px 60px, 40px 40px, 80px 80px;
-     opacity: 0.5;
-     pointer-events: none;
-     z-index: -1;
-     animation: patternShift 30s linear infinite;
-   }
-
-   @keyframes patternShift {
-     from { transform: translate(0, 0); }
-     to { transform: translate(60px, 60px); }
-   }
-
-
-  .hero {
-    position: relative;
-    background: linear-gradient(160deg, #7a0008 0%, #c0161c 45%, #8b0000 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px 80px;
-    overflow: hidden;
-  }
-
-   .hero::before {
-     content: '';
-     position: absolute; inset: 0;
-     background:
-       radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0%, transparent 60%),
-       radial-gradient(circle at 80% 70%, rgba(245,197,24,.12) 0%, transparent 50%),
-       radial-gradient(circle at 50% 50%, rgba(255,107,53,.05) 0%, transparent 70%);
-     pointer-events: none;
-     backdrop-filter: blur(2px);
-   }
-
-   .hero::after {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background-image:
-       radial-gradient(circle at 25% 25%, rgba(245,197,24,.15) 2px, transparent 2px),
-       radial-gradient(circle at 75% 75%, rgba(255,107,53,.1) 1px, transparent 1px);
-     background-size: 50px 50px, 30px 30px;
-     opacity: 0.1;
-     animation: particleFloat 20s linear infinite;
-   }
-
-   @keyframes particleFloat {
-     from { transform: translateY(0) rotate(0deg); }
-     to { transform: translateY(-100vh) rotate(360deg); }
-   }
-
-   /* Enhanced floating dots */
-   .dot {
-     position: absolute;
-     border-radius: 50%;
-     opacity: .4;
-     animation: floatDot 8s ease-in-out infinite;
-     filter: blur(1px);
-     box-shadow:
-       inset 0 0 20px rgba(255,255,255,.3),
-       0 0 40px currentColor;
-     backdrop-filter: blur(5px);
-   }
-   .dot:nth-child(1)  {
-     width:95px; height:95px; background:var(--gold);
-     top:8%; left:5%; animation-delay:0s;
-     box-shadow: inset 0 0 25px rgba(245,197,24,.4), 0 0 50px rgba(245,197,24,.6);
-   }
-   .dot:nth-child(2)  {
-     width:65px; height:65px; background:#fff;
-     top:20%; right:8%; animation-delay:1.5s;
-     box-shadow: inset 0 0 20px rgba(255,255,255,.5), 0 0 35px rgba(255,255,255,.4);
-   }
-   .dot:nth-child(3)  {
-     width:50px; height:50px; background:var(--accent);
-     bottom:25%; left:10%; animation-delay:2.8s;
-     box-shadow: inset 0 0 18px rgba(255,107,53,.4), 0 0 30px rgba(255,107,53,.5);
-   }
-   .dot:nth-child(4)  {
-     width:75px; height:75px; background:var(--blue);
-     bottom:15%; right:6%; animation-delay:1.0s;
-     box-shadow: inset 0 0 22px rgba(52,152,219,.4), 0 0 40px rgba(52,152,219,.5);
-   }
-   .dot:nth-child(5)  {
-     width:40px; height:40px; background:var(--green);
-     top:50%; left:3%; animation-delay:3.5s;
-     box-shadow: inset 0 0 15px rgba(46,204,113,.4), 0 0 25px rgba(46,204,113,.5);
-   }
-   @keyframes floatDot {
-     0%, 100% {
-       transform: translateY(0) scale(1) rotate(0deg);
-       filter: blur(1px) hue-rotate(0deg);
-     }
-     25% {
-       transform: translateY(-25px) scale(1.15) rotate(90deg);
-       filter: blur(1.5px) hue-rotate(90deg);
-     }
-     50% {
-       transform: translateY(-40px) scale(1.08) rotate(180deg);
-       filter: blur(2px) hue-rotate(180deg);
-     }
-     75% {
-       transform: translateY(-25px) scale(1.12) rotate(270deg);
-       filter: blur(1.5px) hue-rotate(270deg);
-     }
-   }
-
-   .school-name {
-     font-family: 'Baloo 2', cursive;
-     font-size: clamp(3.2rem, 12vw, 7rem);
-     font-weight: 900;
-     line-height: 1;
-     background: linear-gradient(135deg, #ff6b35 0%, #f5c518 20%, #2ecc71 40%, #3498db 60%, #9b59b6 80%, #ff6b35 100%);
-     background-size: 400% 400%;
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     background-clip: text;
-     animation: gradShift 6s ease-in-out infinite, slideDown .9s ease both, textGlow 3s ease-in-out infinite alternate;
-     letter-spacing: -2px;
-     filter: drop-shadow(0 8px 20px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(245,197,24,.3));
-     text-shadow: 0 0 30px rgba(255,255,255,.5);
-     position: relative;
-   }
-
-   .school-name::before {
-     content: 'Rio';
-     position: absolute;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background: linear-gradient(135deg, #ff6b35, #f5c518, #2ecc71, #3498db, #9b59b6, #ff6b35);
-     background-size: 400% 400%;
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     background-clip: text;
-     animation: gradShift 4s ease-in-out infinite reverse;
-     opacity: 0.3;
-     filter: blur(3px);
-     transform: translate(2px, 2px);
-   }
-
-   @keyframes textGlow {
-     from { filter: drop-shadow(0 8px 20px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(245,197,24,.3)); }
-     to { filter: drop-shadow(0 8px 20px rgba(0,0,0,.6)) drop-shadow(0 0 60px rgba(245,197,24,.5)); }
-   }
-  @keyframes gradShift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .school-sub {
-    font-family: 'Baloo 2', cursive;
-    font-size: clamp(1.4rem, 4vw, 2.6rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-top: 8px;
-    animation: slideDown 1s ease .2s both;
-    text-shadow: 0 2px 8px rgba(0,0,0,.5);
-  }
-
-  .tagline {
-    font-size: clamp(.9rem, 2vw, 1.15rem);
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: 16px;
-    animation: slideDown 1s ease .4s both;
-  }
-
-   .hero-cta {
-     display: inline-block;
-     margin-top: 40px;
-     padding: 20px 52px;
-     background: linear-gradient(135deg, #f5c518 0%, #e6b800 50%, #ffd700 100%);
-     background-size: 200% 200%;
-     color: #7a0008;
-     font-family: 'Baloo 2', cursive;
-     font-size: 1.25rem;
-     font-weight: 900;
-     border-radius: 60px;
-     text-decoration: none;
-     box-shadow:
-       0 12px 40px rgba(245,197,24,.5),
-       inset 0 2px 0 rgba(255,255,255,.3),
-       inset 0 -2px 0 rgba(0,0,0,.1);
-     animation: slideDown 1s ease .6s both, pulse 3s ease 1.6s infinite, gradientShift 4s ease-in-out infinite;
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-     overflow: hidden;
-     border: 2px solid rgba(255,255,255,.2);
-   }
-
-   .hero-cta::before {
-     content: '';
-     position: absolute;
-     top: 0; left: -100%; right: 0; bottom: 0;
-     background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
-     transition: left .8s ease;
-   }
-
-   .hero-cta:hover::before { left: 100%; }
-
-   .hero-cta:hover {
-     transform: translateY(-6px) scale(1.08);
-     box-shadow:
-       0 20px 60px rgba(245,197,24,.7),
-       inset 0 3px 0 rgba(255,255,255,.4),
-       inset 0 -3px 0 rgba(0,0,0,.2);
-     animation-play-state: paused;
-   }
-
-   .hero-cta:active {
-     transform: translateY(-2px) scale(1.04);
-   }
-
-   @keyframes gradientShift {
-     0%, 100% { background-position: 0% 50%; }
-     50% { background-position: 100% 50%; }
-   }
-
-   @keyframes pulse {
-     0%, 100% {
-       box-shadow: 0 12px 40px rgba(245,197,24,.5), inset 0 2px 0 rgba(255,255,255,.3), inset 0 -2px 0 rgba(0,0,0,.1);
-     }
-     50% {
-       box-shadow: 0 16px 60px rgba(245,197,24,.8), inset 0 3px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(0,0,0,.2);
-     }
-   }
-
-  @keyframes slideDown {
-    from { opacity:0; transform:translateY(-30px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-
-   .hero-badge {
-     position: absolute;
-     bottom: -35px;
-     left: 50%;
-     transform: translateX(-50%);
-     background: rgba(255,255,255,.95);
-     backdrop-filter: blur(20px);
-     padding: 14px 48px;
-     border-radius: 60px;
-     box-shadow:
-       0 12px 40px rgba(0,0,0,.2),
-       inset 0 1px 0 rgba(255,255,255,.8),
-       0 0 0 1px rgba(255,255,255,.3);
-     font-family: 'Baloo 2', cursive;
-     font-size: 1.1rem;
-     font-weight: 800;
-     color: var(--red);
-     letter-spacing: 1.8px;
-     white-space: nowrap;
-     border: 2px solid rgba(245,197,24,.3);
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     animation: badgeFloat 4s ease-in-out infinite;
-   }
-
-   .hero-badge:hover {
-     transform: translateX(-50%) translateY(-5px) scale(1.05);
-     box-shadow:
-       0 18px 50px rgba(0,0,0,.3),
-       inset 0 1px 0 rgba(255,255,255,.8),
-       0 0 0 1px rgba(255,255,255,.3),
-       0 0 30px rgba(245,197,24,.4);
-   }
-
-   @keyframes badgeFloat {
-     0%, 100% { transform: translateX(-50%) translateY(-35px); }
-     50% { transform: translateX(-50%) translateY(-45px); }
-   }
-
-  /* ── COURSES ── */
-  .courses {
-    background: var(--light);
-    padding: 90px 20px 70px;
-  }
-
-   .section-title {
-     text-align: center;
-     font-family: 'Baloo 2', cursive;
-     font-size: clamp(2rem, 6vw, 3.2rem);
-     font-weight: 900;
-     color: var(--red);
-     margin-bottom: 12px;
-     text-shadow: 0 2px 8px rgba(0,0,0,.1);
-     letter-spacing: -0.5px;
-     position: relative;
-   }
-
-   .section-title::after {
-     content: '';
-     position: absolute;
-     bottom: -4px; left: 50%; transform: translateX(-50%);
-     width: 40%; height: 3px;
-     background: linear-gradient(90deg, var(--gold), var(--accent));
-     border-radius: 3px;
-   }
-
-   .section-title span {
-     color: var(--dark);
-     position: relative;
-   }
-
-   .section-title span::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background: linear-gradient(135deg, var(--red), var(--dark));
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     background-clip: text;
-     opacity: 0.8;
-   }
-
-   .section-line {
-     width: 80px; height: 6px;
-     background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-     border-radius: 12px;
-     margin: 0 auto 55px;
-     box-shadow: 0 2px 8px rgba(0,0,0,.1);
-     position: relative;
-   }
-
-   .section-line::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-     border-radius: 12px;
-     filter: blur(4px);
-     opacity: 0.5;
-   }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-   .card {
-     background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-     border-radius: 28px;
-     overflow: hidden;
-     box-shadow:
-       0 8px 32px rgba(0,0,0,.08),
-       0 4px 16px rgba(0,0,0,.04),
-       inset 0 1px 0 rgba(255,255,255,.8);
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-     opacity: 0;
-     transform: translateY(30px);
-     animation: cardIn .6s ease forwards;
-     border: 1px solid rgba(255,255,255,.2);
-   }
-
-   .card::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; height: 4px;
-     background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-     border-radius: 28px 28px 0 0;
-     opacity: 0;
-     transition: opacity .3s ease;
-   }
-
-   .card:hover::before { opacity: 1; }
-
-   .card:hover {
-     transform: translateY(-12px) scale(1.04);
-     box-shadow:
-       0 24px 60px rgba(0,0,0,.18),
-       0 8px 24px rgba(0,0,0,.12),
-       inset 0 1px 0 rgba(255,255,255,.9),
-       0 0 40px rgba(245,197,24,.15);
-   }
-  .card:nth-child(1)  { animation-delay:.05s; }
-  .card:nth-child(2)  { animation-delay:.12s; }
-  .card:nth-child(3)  { animation-delay:.19s; }
-  .card:nth-child(4)  { animation-delay:.26s; }
-  .card:nth-child(5)  { animation-delay:.33s; }
-  .card:nth-child(6)  { animation-delay:.40s; }
-  .card:nth-child(7)  { animation-delay:.47s; }
-  .card:nth-child(8)  { animation-delay:.54s; }
-  .card:nth-child(9)  { animation-delay:.61s; }
-  @keyframes cardIn {
-    to { opacity:1; transform:translateY(0); }
-  }
-
-   .card-icon {
-     width: 100%; height: 185px;
-     display: flex; align-items: center; justify-content: center;
-     font-size: 5.5rem;
-     position: relative;
-     overflow: hidden;
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-   }
-
-   .card:hover .card-icon {
-     transform: scale(1.2) rotate(5deg);
-     font-size: 6rem;
-   }
-
-   .card-icon::before {
-     content: '';
-     position: absolute;
-     inset: 0;
-     background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, rgba(0,0,0,.05) 100%);
-     border-radius: inherit;
-   }
-
-   .card-icon::after {
-     content: '';
-     position: absolute; inset: 0;
-     background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.1) 100%);
-     transition: background .4s ease;
-   }
-
-   .card:hover .card-icon::after {
-     background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(0,0,0,.05) 100%);
-   }
-
-  .card-body { padding: 18px 20px 22px; }
-  .card-title {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 6px;
-  }
-  .card-desc {
-    font-size: .88rem;
-    color: #666;
-    line-height: 1.55;
-  }
-
-   .badge {
-     position: absolute; top: 18px; right: 18px;
-     padding: 6px 16px;
-     border-radius: 50px;
-     font-size: .8rem;
-     font-weight: 900;
-     color: #fff;
-     text-transform: uppercase;
-     letter-spacing: 1px;
-     z-index: 2;
-     backdrop-filter: blur(10px);
-     box-shadow:
-       0 4px 16px rgba(0,0,0,.15),
-       inset 0 1px 0 rgba(255,255,255,.3);
-     border: 1px solid rgba(255,255,255,.2);
-     transition: all .3s ease;
-   }
-
-   .card:hover .badge {
-     transform: scale(1.1) translateY(-2px);
-     box-shadow:
-       0 6px 20px rgba(0,0,0,.2),
-       inset 0 1px 0 rgba(255,255,255,.3);
-   }
-
-  /* card palette */
-  .bg-1 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
-  .bg-2 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
-  .bg-3 { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
-  .bg-4 { background: linear-gradient(135deg, #f093fb, #f5576c); }
-  .bg-5 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-  .bg-6 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-  .bg-7 { background: linear-gradient(135deg, #f7971e, #ffd200); }
-  .bg-8 { background: linear-gradient(135deg, #30cfd0, #667eea); }
-  .bg-9 { background: linear-gradient(135deg, #fd7eb3, #ff9a9e); }
-
-  .badge-red    { background: #c0161c; }
-  .badge-blue   { background: #3498db; }
-  .badge-green  { background: #27ae60; }
-  .badge-purple { background: #8e44ad; }
-  .badge-orange { background: #e67e22; }
-  .badge-teal   { background: #16a085; }
-  .badge-gold   { background: #d4a017; }
-
-  /* ── WHY ── */
-  .why {
-    background: linear-gradient(160deg, #7a0008 0%, #c0161c 100%);
-    padding: 70px 20px;
-    color: #fff;
-  }
-  .why .section-title { color: var(--gold); }
-  .why .section-line  { background: linear-gradient(90deg, var(--gold), #fff); }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .why-item {
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 18px;
-    padding: 30px 22px;
-    text-align: center;
-    backdrop-filter: blur(6px);
-    transition: background .3s, transform .3s;
-  }
-  .why-item:hover {
-    background: rgba(255,255,255,.18);
-    transform: translateY(-5px);
-  }
-  .why-icon { font-size: 2.8rem; margin-bottom: 12px; }
-  .why-title {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.1rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-    color: var(--gold);
-  }
-  .why-text { font-size: .88rem; opacity: .85; line-height: 1.55; }
-
-  /* ── CONTACT ── */
-  .contact {
-    background: var(--light);
-    padding: 80px 20px;
-  }
-   .contact-wrap {
-     max-width: 920px;
-     margin: 0 auto;
-     background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-     border-radius: 36px;
-     box-shadow:
-       0 16px 70px rgba(0,0,0,.12),
-       0 4px 20px rgba(0,0,0,.08),
-       inset 0 1px 0 rgba(255,255,255,.8);
-     overflow: hidden;
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     border: 1px solid rgba(255,255,255,.2);
-     position: relative;
-   }
-
-   .contact-wrap::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; height: 4px;
-     background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-     border-radius: 36px 36px 0 0;
-   }
-  @media(max-width:640px){ .contact-wrap{ grid-template-columns:1fr; } }
-
-  .contact-left {
-    background: linear-gradient(160deg, #7a0008, #c0161c);
-    padding: 50px 36px;
-    color: #fff;
-  }
-  .contact-left h2 {
-    font-family: 'Baloo 2', cursive;
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-  .contact-left .sub {
-    font-size: .9rem;
-    opacity: .8;
-    margin-bottom: 36px;
-  }
-  .info-row {
-    display: flex; align-items: flex-start; gap: 14px;
-    margin-bottom: 22px;
-  }
-  .info-icon {
-    width: 42px; height: 42px; flex-shrink: 0;
-    background: rgba(255,255,255,.15);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-  }
-  .info-label { font-size: .78rem; opacity: .7; margin-bottom: 2px; }
-  .info-val { font-weight: 700; font-size: .97rem; }
-
-  .contact-right { padding: 50px 36px; }
-  .contact-right h3 {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 24px;
-  }
-  .form-group { margin-bottom: 18px; }
-  .form-group label {
-    display: block;
-    font-size: .82rem;
-    font-weight: 700;
-    color: #555;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #eee;
-    border-radius: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: .9rem;
-    transition: border-color .2s;
-    outline: none;
-    background: #fafafa;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--red); background: #fff; }
-  .form-group textarea { resize: none; height: 90px; }
-
-   .btn-submit {
-     width: 100%;
-     padding: 18px;
-     background: linear-gradient(135deg, var(--dark) 0%, var(--red) 50%, var(--accent) 100%);
-     background-size: 200% 200%;
-     color: #fff;
-     border: none;
-     border-radius: 16px;
-     font-family: 'Baloo 2', cursive;
-     font-size: 1.15rem;
-     font-weight: 800;
-     cursor: pointer;
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     letter-spacing: 1px;
-     box-shadow:
-       0 8px 28px rgba(192,22,28,.4),
-       inset 0 2px 0 rgba(255,255,255,.2),
-       inset 0 -2px 0 rgba(0,0,0,.2);
-     position: relative;
-     overflow: hidden;
-   }
-
-   .btn-submit::before {
-     content: '';
-     position: absolute;
-     top: 0; left: -100%; right: 0; bottom: 0;
-     background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
-     transition: left .8s ease;
-   }
-
-   .btn-submit:hover::before { left: 100%; }
-
-   .btn-submit:hover {
-     transform: translateY(-4px) scale(1.02);
-     box-shadow:
-       0 16px 40px rgba(192,22,28,.6),
-       inset 0 3px 0 rgba(255,255,255,.3),
-       inset 0 -3px 0 rgba(0,0,0,.3);
-   }
-
-   .btn-submit:active {
-     transform: translateY(-2px) scale(1.01);
-   }
-
-  /* ── DIRECTOR ── */
-  .director {
-    background: #fff;
-    padding: 70px 20px;
-    text-align: center;
-  }
-   .director-card {
-     display: inline-flex;
-     flex-direction: column;
-     align-items: center;
-     gap: 20px;
-     background: linear-gradient(160deg, #7a0008 0%, #c0161c 50%, #8b0000 100%);
-     color: #fff;
-     padding: 56px 72px;
-     border-radius: 36px;
-     box-shadow:
-       0 20px 80px rgba(192,22,28,.4),
-       inset 0 2px 0 rgba(255,255,255,.1),
-       0 0 0 1px rgba(255,255,255,.05);
-     max-width: 520px;
-     position: relative;
-     overflow: hidden;
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-   }
-
-   .director-card::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; bottom: 0;
-     background: radial-gradient(circle at 30% 20%, rgba(245,197,24,.12) 0%, transparent 50%);
-     pointer-events: none;
-   }
-
-   .director-card:hover {
-     transform: translateY(-8px) scale(1.02);
-     box-shadow:
-       0 32px 100px rgba(192,22,28,.5),
-       inset 0 3px 0 rgba(255,255,255,.15),
-       0 0 0 1px rgba(255,255,255,.05),
-       0 0 60px rgba(245,197,24,.2);
-   }
-   .avatar {
-     width: 130px; height: 130px;
-     background: rgba(255,255,255,.25);
-     border-radius: 50%;
-     display: flex; align-items: center; justify-content: center;
-     font-size: 3rem;
-     border: 5px solid var(--gold);
-     overflow: hidden;
-     box-shadow:
-       0 12px 32px rgba(0,0,0,.3),
-       inset 0 2px 0 rgba(255,255,255,.3),
-       0 0 40px rgba(245,197,24,.3);
-     position: relative;
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-   }
-
-   .avatar::before {
-     content: '';
-     position: absolute;
-     inset: -4px;
-     border-radius: 50%;
-     background: conic-gradient(from 0deg, var(--gold), var(--accent), var(--gold));
-     z-index: -1;
-     opacity: 0.7;
-     animation: avatarGlow 4s linear infinite;
-   }
-
-   .avatar:hover {
-     transform: scale(1.1);
-     box-shadow:
-       0 16px 40px rgba(0,0,0,.4),
-       inset 0 3px 0 rgba(255,255,255,.4),
-       0 0 60px rgba(245,197,24,.5);
-   }
-
-   @keyframes avatarGlow {
-     from { transform: rotate(0deg); }
-     to { transform: rotate(360deg); }
-   }
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .dir-label { font-size: .82rem; opacity: .75; letter-spacing: 2px; text-transform: uppercase; }
-  .dir-name {
-    font-family: 'Baloo 2', cursive;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1.1;
-  }
-  .dir-qual { font-size: .9rem; opacity: .82; line-height: 1.7; }
-  .motto {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 7px 22px;
-    background: var(--gold);
-    color: var(--dark);
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: .9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #1a0003;
-    color: rgba(255,255,255,.6);
-    text-align: center;
-    padding: 24px 20px;
-    font-size: .85rem;
-  }
-  footer strong { color: var(--gold); }
-
-  /* ── NAV ── */
-   nav {
-     position: fixed;
-     top: 0;
-     left: 0;
-     right: 0;
-     z-index: 1000;
-     background: rgba(122,0,8,.95);
-     backdrop-filter: blur(20px);
-     -webkit-backdrop-filter: blur(20px);
-     padding: 16px 35px;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     border-bottom: 1px solid rgba(255,255,255,.12);
-     box-shadow: 0 4px 30px rgba(0,0,0,.15);
-     animation: navDrop .6s ease both;
-     transition: all .3s ease;
-   }
-
-   nav:hover {
-     background: rgba(122,0,8,.98);
-     box-shadow: 0 8px 40px rgba(0,0,0,.2);
-   }
-  @keyframes navDrop {
-    from { transform: translateY(-100%); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
-  }
-   .nav-logo {
-     font-family: 'Baloo 2', cursive;
-     font-size: 1.45rem;
-     font-weight: 900;
-     color: var(--gold);
-     text-decoration: none;
-     letter-spacing: 1px;
-     z-index: 1002;
-     text-shadow: 0 2px 8px rgba(0,0,0,.5);
-     transition: all .3s ease;
-     position: relative;
-   }
-
-   .nav-logo::after {
-     content: '';
-     position: absolute;
-     bottom: -2px; left: 0; right: 0; height: 2px;
-     background: linear-gradient(90deg, var(--gold), var(--accent));
-     border-radius: 2px;
-     transform: scaleX(0);
-     transition: transform .3s ease;
-   }
-
-   .nav-logo:hover::after { transform: scaleX(1); }
-
-   .nav-logo:hover {
-     transform: scale(1.05);
-     text-shadow: 0 4px 16px rgba(245,197,24,.6);
-   }
-
-   .nav-links { display: flex; gap: 28px; list-style: none; }
-
-   .nav-links a {
-     color: rgba(255,255,255,.85);
-     text-decoration: none;
-     font-weight: 700;
-     font-size: .95rem;
-     transition: all .3s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-     padding: 6px 0;
-     letter-spacing: 0.5px;
-   }
-
-   .nav-links a::before {
-     content: '';
-     position: absolute;
-     bottom: 0; left: 0; right: 0; height: 2px;
-     background: linear-gradient(90deg, var(--gold), var(--accent));
-     border-radius: 2px;
-     transform: scaleX(0);
-     transition: transform .3s ease;
-     transform-origin: right;
-   }
-
-   .nav-links a:hover {
-     color: var(--gold);
-     transform: translateY(-2px);
-     text-shadow: 0 0 20px rgba(245,197,24,.5);
-   }
-
-   .nav-links a:hover::before {
-     transform: scaleX(1);
-     transform-origin: left;
-   }
-
-  /* ── HAMBURGER BUTTON ── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 46px;
-    height: 46px;
-    background: #111;
-    border: 2px solid rgba(255,255,255,.15);
-    border-radius: 12px;
-    cursor: pointer;
-    z-index: 10002;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-    box-shadow: 0 4px 16px rgba(0,0,0,.35);
-    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .25s ease;
-  }
-  .hamburger:hover {
-    background: #222;
-    border-color: var(--gold);
-    box-shadow: 0 6px 22px rgba(245,197,24,.2);
-    transform: scale(1.06);
-  }
-  .hamburger:active {
-    transform: scale(.95);
-  }
-  .hamburger.active {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-    border-color: var(--gold);
-    box-shadow: 0 4px 20px rgba(245,197,24,.25);
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2.5px;
-    background: var(--white);
-    border-radius: 3px;
-    transition: transform .35s cubic-bezier(.4,.01,.165,.99),
-                opacity .2s ease,
-                background .3s ease,
-                width .3s ease;
-    position: relative;
-  }
-  .hamburger span:nth-child(1) { margin-bottom: 5px; width: 22px; }
-  .hamburger span:nth-child(2) { width: 16px; }
-  .hamburger span:nth-child(3) { margin-top: 5px; width: 22px; }
-
-  /* Hamburger active (X) */
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(7.5px) rotate(45deg);
-    background: var(--gold);
-    width: 22px;
-  }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-7.5px) rotate(-45deg);
-    background: var(--gold);
-    width: 22px;
-  }
-
-  /* ── MOBILE NAV OVERLAY ── */
-  @media (max-width: 768px) {
-    .hamburger {
-      display: flex;
-    }
-
-    .nav-links {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000000;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      padding: 80px 20px 40px;
-      z-index: 10001;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px);
-      transition: opacity .4s cubic-bezier(.4,.01,.165,.99),
-                  visibility .4s,
-                  transform .4s cubic-bezier(.4,.01,.165,.99);
-      overflow-y: auto;
-    }
-
-    .nav-links.open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .nav-links li {
-      width: 100%;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .35s ease, transform .35s ease;
-    }
-    .nav-links.open li {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .nav-links.open li:nth-child(1) { transition-delay: .08s; }
-    .nav-links.open li:nth-child(2) { transition-delay: .14s; }
-    .nav-links.open li:nth-child(3) { transition-delay: .20s; }
-    .nav-links.open li:nth-child(4) { transition-delay: .26s; }
-    .nav-links.open li:nth-child(5) { transition-delay: .32s; }
-    .nav-links.open li:nth-child(6) { transition-delay: .38s; }
-
-    .nav-links a {
-      display: block;
-      padding: 18px 10px;
-      font-size: 1.25rem;
-      font-family: 'Baloo 2', cursive;
-      font-weight: 800;
-      color: rgba(255,255,255,.9);
-      letter-spacing: .5px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      transition: color .2s, background .2s;
-    }
-    .nav-links li:last-child a { border-bottom: none; }
-    .nav-links a:hover,
-    .nav-links a:active {
-      color: var(--gold);
-      background: rgba(245,197,24,.06);
-    }
-  }
-
-  /* ── RESPONSIVE BREAKPOINTS ── */
-
-  /* Large tablets & small laptops */
-  @media (max-width: 1024px) {
-    .se-hero-grid { gap: 30px; }
-    .iit-grid { gap: 22px; }
-    .director-card { padding: 36px 40px; }
-  }
-
-  /* Tablets */
-  @media (max-width: 768px) {
-    .hero { padding: 80px 16px 70px; min-height: 90vh; }
-    .school-name { font-size: clamp(2.5rem, 12vw, 4.5rem); }
-    .hero-cta { padding: 14px 36px; font-size: 1rem; }
-    .hero-badge { padding: 8px 28px; font-size: .85rem; }
-
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-
-    .iit-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-grid { grid-template-columns: repeat(2, 1fr); }
-
-    .contact-wrap { grid-template-columns: 1fr; }
-    .contact-left { padding: 36px 28px; }
-    .contact-right { padding: 36px 28px; }
-
-    .director-card { padding: 36px 32px; max-width: 400px; }
-  }
-
-  /* Small phones */
-  @media (max-width: 480px) {
-    nav { padding: 12px 16px; }
-    .nav-logo { font-size: 1.15rem; }
-
-    .hero { padding: 70px 14px 60px; min-height: 85vh; }
-    .school-name { font-size: clamp(2rem, 14vw, 3.5rem); }
-    .school-sub { font-size: clamp(1.1rem, 5vw, 1.8rem); }
-    .tagline { font-size: clamp(.75rem, 2.5vw, .95rem); letter-spacing: 2px; }
-    .hero-cta { padding: 12px 28px; font-size: .95rem; margin-top: 28px; }
-    .hero-badge { padding: 7px 22px; font-size: .78rem; }
-
-    .courses { padding: 70px 14px 50px; }
-    .grid { grid-template-columns: 1fr; gap: 18px; }
-    .card-icon { height: 140px; font-size: 3.8rem; }
-
-    .stats { padding: 40px 14px 10px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .stat-box { padding: 20px 12px; }
-    .stat-num { font-size: 1.8rem; }
-
-    .why { padding: 50px 14px; }
-    .why-grid { grid-template-columns: 1fr; gap: 16px; }
-    .why-item { padding: 24px 18px; }
-
-    .iit-foundation { padding: 70px 14px 60px; }
-    .iit-grid { grid-template-columns: 1fr; gap: 18px; }
-    .iit-features { gap: 10px 14px; }
-    .iit-feature { padding: 8px 16px; font-size: .82rem; }
-    .iit-modes-banner .mode-pill { padding: 10px 20px; font-size: .9rem; }
-
-    .spoken-english { padding: 70px 14px 60px; }
-    .se-hero-grid { gap: 28px; }
-    .se-content h3 { font-size: 1.4rem; }
-    .se-features { gap: 10px 14px; }
-    .se-feature { padding: 8px 16px; font-size: .82rem; }
-    .se-online-badge { padding: 10px 20px; font-size: .92rem; }
-    .se-step { padding: 16px 18px; }
-
-    .director { padding: 50px 14px; }
-    .director-card { padding: 32px 24px; }
-    .dir-name { font-size: 1.6rem; }
-    .avatar { width: 90px; height: 90px; font-size: 2.2rem; border-width: 3px; }
-
-    .contact { padding: 50px 14px; }
-    .contact-left { padding: 30px 20px; }
-    .contact-left h2 { font-size: 1.5rem; }
-    .contact-right { padding: 30px 20px; }
-    .contact-right h3 { font-size: 1.2rem; }
-
-    .section-title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
-    .section-line { margin-bottom: 35px; }
-
-    .iit-cta, .se-cta, .hero-cta { padding: 14px 32px; font-size: 1rem; }
-
-    footer { padding: 20px 14px; font-size: .8rem; }
-  }
-
-  /* Tiny screens */
-  @media (max-width: 360px) {
-    .school-name { font-size: 2rem; }
-    .school-sub { font-size: 1rem; }
-    .hero-cta { padding: 10px 24px; font-size: .88rem; }
-    .stat-num { font-size: 1.5rem; }
-    .stat-box { padding: 16px 10px; }
-    .contact-left h2 { font-size: 1.3rem; }
-  }
-
-  /* Body scroll lock when menu open */
-  body.nav-open { overflow: hidden; }
-
-  /* ── STATS ── */
-  .stats {
-    background: var(--light);
-    padding: 60px 20px 10px;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 24px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-   .stat-box {
-     text-align: center;
-     background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-     border-radius: 24px;
-     padding: 36px 24px;
-     box-shadow:
-       0 6px 24px rgba(0,0,0,.08),
-       0 2px 12px rgba(0,0,0,.04),
-       inset 0 1px 0 rgba(255,255,255,.8);
-     border: 1px solid rgba(255,255,255,.2);
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-     overflow: hidden;
-   }
-
-   .stat-box::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; height: 6px;
-     background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-     border-radius: 24px 24px 0 0;
-   }
-
-   .stat-box::after {
-     content: '';
-     position: absolute;
-     top: 0; left: -100%; right: 0; bottom: 0;
-     background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-     transition: left .6s ease;
-   }
-
-   .stat-box:hover::after { left: 100%; }
-
-   .stat-box:hover {
-     transform: translateY(-8px) scale(1.05);
-     box-shadow:
-       0 16px 48px rgba(0,0,0,.15),
-       0 4px 20px rgba(0,0,0,.1),
-       inset 0 1px 0 rgba(255,255,255,.9);
-   }
-  .stat-num {
-    font-family: 'Baloo 2', cursive;
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: var(--red);
-  }
-  .stat-label { font-size: .88rem; color: #777; font-weight: 600; margin-top: 4px; }
-
-  /* scroll reveal helper */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity .7s ease, transform .7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── IIT FOUNDATION ── */
-  .iit-foundation {
-    background: linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    padding: 90px 20px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .iit-foundation::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(245,197,24,.08) 0%, transparent 50%),
-      radial-gradient(circle at 85% 80%, rgba(192,22,28,.1) 0%, transparent 45%);
-    pointer-events: none;
-  }
-  .iit-foundation .section-title { color: var(--gold); }
-  .iit-foundation .section-title span { color: #fff; }
-  .iit-foundation .section-line { background: linear-gradient(90deg, var(--gold), var(--accent)); }
-
-  .iit-subtitle {
-    text-align: center;
-    color: rgba(255,255,255,.75);
-    font-size: 1.05rem;
-    max-width: 680px;
-    margin: -30px auto 50px;
-    line-height: 1.7;
-  }
-  .iit-subtitle strong {
-    color: var(--gold);
-    font-weight: 800;
-  }
-
-  .iit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
-    max-width: 1100px;
-    margin: 0 auto 50px;
-  }
-
-   .iit-card {
-     background: rgba(255,255,255,.08);
-     border: 1px solid rgba(255,255,255,.15);
-     border-radius: 28px;
-     padding: 0;
-     overflow: hidden;
-     backdrop-filter: blur(15px);
-     -webkit-backdrop-filter: blur(15px);
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-   }
-
-   .iit-card::before {
-     content: '';
-     position: absolute;
-     top: 0; left: 0; right: 0; height: 4px;
-     background: linear-gradient(90deg, var(--gold), var(--accent));
-     border-radius: 28px 28px 0 0;
-     opacity: 0;
-     transition: opacity .3s ease;
-   }
-
-   .iit-card:hover::before { opacity: 1; }
-
-   .iit-card:hover {
-     transform: translateY(-12px) scale(1.04);
-     box-shadow:
-       0 28px 80px rgba(0,0,0,.45),
-       0 8px 32px rgba(0,0,0,.25),
-       0 0 50px rgba(245,197,24,.15);
-     border-color: rgba(245,197,24,.5);
-     background: rgba(255,255,255,.12);
-   }
-
-  .iit-card-header {
-    padding: 28px 24px 20px;
-    text-align: center;
-    position: relative;
-  }
-  .iit-card-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 20%; right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
-  }
-
-  .iit-class-badge {
-    display: inline-block;
-    padding: 6px 20px;
-    border-radius: 50px;
-    font-family: 'Baloo 2', cursive;
-    font-size: .85rem;
-    font-weight: 800;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .iit-class-7 .iit-class-badge { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #0a3d2a; }
-  .iit-class-8 .iit-class-badge { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #0a2a4a; }
-  .iit-class-9 .iit-class-badge { background: linear-gradient(135deg, #f093fb, #f5576c); color: #3d0a2a; }
-  .iit-class-10 .iit-class-badge { background: linear-gradient(135deg, #f7971e, #ffd200); color: #3d2a0a; }
-
-  .iit-class-num {
-    font-family: 'Baloo 2', cursive;
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--gold), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .iit-class-label {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: rgba(255,255,255,.9);
-    margin-top: 4px;
-  }
-
-  .iit-card-body {
-    padding: 20px 24px 28px;
-  }
-  .iit-card-body ul {
-    list-style: none;
-    padding: 0;
-  }
-  .iit-card-body li {
-    position: relative;
-    padding: 6px 0 6px 24px;
-    font-size: .88rem;
-    color: rgba(255,255,255,.78);
-    line-height: 1.5;
-  }
-  .iit-card-body li::before {
-    content: '✦';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-size: .7rem;
-    top: 9px;
-  }
-
-  .iit-features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px 30px;
-    max-width: 900px;
-    margin: 0 auto 40px;
-  }
-  .iit-feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 50px;
-    padding: 10px 22px;
-    color: rgba(255,255,255,.85);
-    font-size: .88rem;
-    font-weight: 700;
-    transition: background .3s, transform .3s;
-  }
-  .iit-feature:hover {
-    background: rgba(245,197,24,.12);
-    transform: translateY(-2px);
-  }
-  .iit-feature-icon {
-    font-size: 1.2rem;
-  }
-
-  .iit-cta-wrap {
-    text-align: center;
-  }
-  .iit-cta {
-    display: inline-block;
-    padding: 16px 48px;
-    background: linear-gradient(90deg, var(--gold), var(--accent));
-    color: #fff;
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.15rem;
-    font-weight: 800;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 8px 30px rgba(245,197,24,.3);
-    transition: transform .25s, box-shadow .25s;
-    letter-spacing: .5px;
-  }
-  .iit-cta:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 14px 44px rgba(245,197,24,.45);
-  }
-
-  /* IIT mode badge */
-  .iit-mode-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    padding: 6px 16px;
-    border-radius: 50px;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.15);
-    font-size: .78rem;
-    font-weight: 700;
-    color: rgba(255,255,255,.9);
-    letter-spacing: .3px;
-  }
-  .iit-mode-badge .mode-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    display: inline-block;
-    animation: modePulse 2s ease-in-out infinite;
-  }
-  .iit-mode-badge .mode-dot.offline { background: #2ecc71; }
-  .iit-mode-badge .mode-dot.online  { background: #3498db; animation-delay: 1s; }
-  @keyframes modePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: .5; transform: scale(1.4); }
-  }
-
-  .iit-modes-banner {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin: -20px auto 40px;
-  }
-  .iit-modes-banner .mode-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 28px;
-    border-radius: 16px;
-    font-family: 'Baloo 2', cursive;
-    font-size: 1rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: .5px;
-    border: 1px solid rgba(255,255,255,.15);
-    transition: transform .3s, box-shadow .3s;
-  }
-  .iit-modes-banner .mode-pill:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,.3);
-  }
-  .iit-modes-banner .mode-pill.offline-pill {
-    background: linear-gradient(135deg, rgba(46,204,113,.2), rgba(46,204,113,.08));
-    border-color: rgba(46,204,113,.35);
-  }
-  .iit-modes-banner .mode-pill.online-pill {
-    background: linear-gradient(135deg, rgba(52,152,219,.2), rgba(52,152,219,.08));
-    border-color: rgba(52,152,219,.35);
-  }
-  .mode-pill-icon {
-    font-size: 1.3rem;
-  }
-
-  /* ── SPOKEN ENGLISH ── */
-  .spoken-english {
-    background: linear-gradient(160deg, #0a2e38 0%, #0d4f5f 40%, #0a3a48 100%);
-    padding: 90px 20px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .spoken-english::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 10% 25%, rgba(52,152,219,.12) 0%, transparent 50%),
-      radial-gradient(circle at 90% 75%, rgba(46,204,113,.1) 0%, transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(255,255,255,.02) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .spoken-english .section-title { color: #5ddef4; }
-  .spoken-english .section-title span { color: #fff; }
-  .spoken-english .section-line { background: linear-gradient(90deg, #5ddef4, #2ecc71); }
-
-  .se-subtitle {
-    text-align: center;
-    color: rgba(255,255,255,.78);
-    font-size: 1.08rem;
-    max-width: 720px;
-    margin: -30px auto 16px;
-    line-height: 1.7;
-  }
-  .se-subtitle strong { color: #5ddef4; font-weight: 800; }
-
-  .se-online-badge-wrap {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .se-online-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 36px;
-    border-radius: 60px;
-    background: linear-gradient(135deg, rgba(52,152,219,.22), rgba(93,222,244,.12));
-    border: 2px solid rgba(93,222,244,.4);
-    color: #fff;
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: .5px;
-    animation: seBadgePulse 3s ease-in-out infinite;
-  }
-  .se-online-badge .se-live-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: #2ecc71;
-    animation: modePulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 8px rgba(46,204,113,.6);
-  }
-  @keyframes seBadgePulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(93,222,244,.15); }
-    50%      { box-shadow: 0 0 40px rgba(93,222,244,.3); }
-  }
-
-  .se-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 1060px;
-    margin: 0 auto 50px;
-    align-items: center;
-  }
-  @media(max-width:768px) { .se-hero-grid { grid-template-columns: 1fr; } }
-
-  .se-content h3 {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-  .se-content h3 em {
-    font-style: normal;
-    background: linear-gradient(135deg, #5ddef4, #2ecc71);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .se-content p {
-    color: rgba(255,255,255,.75);
-    font-size: .95rem;
-    line-height: 1.7;
-    margin-bottom: 24px;
-  }
-
-  .se-highlights {
-    list-style: none;
-    padding: 0;
-  }
-  .se-highlights li {
-    position: relative;
-    padding: 10px 0 10px 36px;
-    font-size: .92rem;
-    color: rgba(255,255,255,.85);
-    line-height: 1.5;
-    font-weight: 600;
-  }
-  .se-highlights li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 14px;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #5ddef4, #2ecc71);
-    opacity: .25;
-  }
-  .se-highlights li::after {
-    content: '✓';
-    position: absolute;
-    left: 5px; top: 13px;
-    color: #5ddef4;
-    font-size: .8rem;
-    font-weight: 800;
-  }
-
-  .se-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-   .se-step {
-     display: flex;
-     align-items: center;
-     gap: 20px;
-     background: rgba(255,255,255,.08);
-     border: 1px solid rgba(255,255,255,.15);
-     border-radius: 24px;
-     padding: 24px 28px;
-     backdrop-filter: blur(12px);
-     -webkit-backdrop-filter: blur(12px);
-     transition: all .4s cubic-bezier(.34,1.56,.64,1);
-     position: relative;
-     overflow: hidden;
-   }
-
-   .se-step::before {
-     content: '';
-     position: absolute;
-     top: 0; left: -100%; right: 0; bottom: 0;
-     background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
-     transition: left .6s ease;
-   }
-
-   .se-step:hover::before { left: 100%; }
-
-   .se-step:hover {
-     transform: translateX(12px) scale(1.02);
-     border-color: rgba(93,222,244,.5);
-     background: rgba(93,222,244,.12);
-     box-shadow: 0 8px 32px rgba(0,0,0,.15), 0 0 30px rgba(93,222,244,.2);
-   }
-  .se-step-num {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  .se-step:nth-child(1) .se-step-num { background: linear-gradient(135deg, #3498db, #5ddef4); }
-  .se-step:nth-child(2) .se-step-num { background: linear-gradient(135deg, #9b59b6, #f093fb); }
-  .se-step:nth-child(3) .se-step-num { background: linear-gradient(135deg, #2ecc71, #43e97b); }
-  .se-step:nth-child(4) .se-step-num { background: linear-gradient(135deg, #f5c518, #ff6b35); }
-  .se-step-info {
-    flex: 1;
-  }
-  .se-step-title {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 2px;
-  }
-  .se-step-desc {
-    font-size: .82rem;
-    color: rgba(255,255,255,.6);
-    line-height: 1.4;
-  }
-
-  .se-features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px 24px;
-    max-width: 950px;
-    margin: 0 auto 40px;
-  }
-  .se-feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 50px;
-    padding: 10px 22px;
-    color: rgba(255,255,255,.88);
-    font-size: .88rem;
-    font-weight: 700;
-    transition: background .3s, transform .3s;
-  }
-  .se-feature:hover {
-    background: rgba(93,222,244,.12);
-    transform: translateY(-2px);
-  }
-  .se-feature-icon {
-    font-size: 1.2rem;
-  }
-
-  .se-cta-wrap {
-    text-align: center;
-  }
-  .se-cta {
-    display: inline-block;
-    padding: 16px 48px;
-    background: linear-gradient(90deg, #5ddef4, #2ecc71);
-    color: #0a2e38;
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.15rem;
-    font-weight: 800;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 8px 30px rgba(93,222,244,.25);
-    transition: transform .25s, box-shadow .25s;
-    letter-spacing: .5px;
-  }
-  .se-cta:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 14px 44px rgba(93,222,244,.4);
-  }
+  body { font-family: 'Nunito', sans-serif; background: linear-gradient(180deg, var(--light) 0%, rgba(255,248,240,.95) 50%, var(--light) 100%); color: #222; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 25% 25%, rgba(245,197,24,.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(255,107,53,.02) 1px, transparent 1px); background-size: 60px 60px, 40px 40px; opacity: 0.5; pointer-events: none; z-index: -1; }
+
+  /* HERO */
+  .hero { position: relative; background: linear-gradient(160deg, #7a0008 0%, #c0161c 45%, #8b0000 100%); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 20px 80px; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0%, transparent 60%), radial-gradient(circle at 80% 70%, rgba(245,197,24,.12) 0%, transparent 50%); pointer-events: none; }
+  .dot { position: absolute; border-radius: 50%; opacity: .4; animation: floatDot 8s ease-in-out infinite; filter: blur(1px); }
+  .dot:nth-child(1) { width:95px; height:95px; background:var(--gold); top:8%; left:5%; animation-delay:0s; }
+  .dot:nth-child(2) { width:65px; height:65px; background:#fff; top:20%; right:8%; animation-delay:1.5s; }
+  .dot:nth-child(3) { width:50px; height:50px; background:var(--accent); bottom:25%; left:10%; animation-delay:2.8s; }
+  .dot:nth-child(4) { width:75px; height:75px; background:var(--blue); bottom:15%; right:6%; animation-delay:1.0s; }
+  .dot:nth-child(5) { width:40px; height:40px; background:var(--green); top:50%; left:3%; animation-delay:3.5s; }
+  @keyframes floatDot { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-40px) scale(1.08);} }
+  .school-name { font-family:'Baloo 2',cursive; font-size:clamp(3.2rem,12vw,7rem); font-weight:900; line-height:1; background:linear-gradient(135deg,#ff6b35 0%,#f5c518 20%,#2ecc71 40%,#3498db 60%,#9b59b6 80%,#ff6b35 100%); background-size:400% 400%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:gradShift 6s ease-in-out infinite,slideDown .9s ease both; letter-spacing:-2px; filter:drop-shadow(0 8px 20px rgba(0,0,0,.6)); }
+  @keyframes gradShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+  @keyframes slideDown { from{opacity:0;transform:translateY(-30px);} to{opacity:1;transform:translateY(0);} }
+  .school-sub { font-family:'Baloo 2',cursive; font-size:clamp(1.4rem,4vw,2.6rem); font-weight:700; color:var(--white); margin-top:8px; animation:slideDown 1s ease .2s both; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .tagline { font-size:clamp(.9rem,2vw,1.15rem); font-weight:700; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-top:16px; animation:slideDown 1s ease .4s both; }
+  .hero-cta { display:inline-block; margin-top:40px; padding:20px 52px; background:linear-gradient(135deg,#f5c518 0%,#e6b800 50%,#ffd700 100%); color:#7a0008; font-family:'Baloo 2',cursive; font-size:1.25rem; font-weight:900; border-radius:60px; text-decoration:none; box-shadow:0 12px 40px rgba(245,197,24,.5); animation:slideDown 1s ease .6s both; transition:all .4s cubic-bezier(.34,1.56,.64,1); border:2px solid rgba(255,255,255,.2); }
+  .hero-cta:hover { transform:translateY(-6px) scale(1.08); box-shadow:0 20px 60px rgba(245,197,24,.7); }
+  .hero-badge { position:absolute; bottom:-35px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,.95); backdrop-filter:blur(20px); padding:14px 48px; border-radius:60px; box-shadow:0 12px 40px rgba(0,0,0,.2); font-family:'Baloo 2',cursive; font-size:1.1rem; font-weight:800; color:var(--red); letter-spacing:1.8px; white-space:nowrap; border:2px solid rgba(245,197,24,.3); animation:badgeFloat 4s ease-in-out infinite; }
+  @keyframes badgeFloat { 0%,100%{transform:translateX(-50%) translateY(-35px);} 50%{transform:translateX(-50%) translateY(-45px);} }
+
+  /* COMMON */
+  .section-title { text-align:center; font-family:'Baloo 2',cursive; font-size:clamp(2rem,6vw,3.2rem); font-weight:900; color:var(--red); margin-bottom:12px; letter-spacing:-0.5px; position:relative; }
+  .section-title::after { content:''; position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); width:40%; height:3px; background:linear-gradient(90deg,var(--gold),var(--accent)); border-radius:3px; }
+  .section-line { width:80px; height:6px; background:linear-gradient(90deg,var(--red),var(--gold),var(--accent)); border-radius:12px; margin:0 auto 55px; }
+  .reveal { opacity:0; transform:translateY(40px); transition:opacity .7s ease,transform .7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* STATS */
+  .stats { background:var(--light); padding:60px 20px 10px; }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:24px; max-width:900px; margin:0 auto; }
+  .stat-box { text-align:center; background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%); border-radius:24px; padding:36px 24px; box-shadow:0 6px 24px rgba(0,0,0,.08); transition:all .4s cubic-bezier(.34,1.56,.64,1); position:relative; overflow:hidden; }
+  .stat-box::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:linear-gradient(90deg,var(--red),var(--gold),var(--accent)); border-radius:24px 24px 0 0; }
+  .stat-box:hover { transform:translateY(-8px) scale(1.05); }
+  .stat-num { font-family:'Baloo 2',cursive; font-size:2.4rem; font-weight:800; color:var(--red); }
+  .stat-label { font-size:.88rem; color:#777; font-weight:600; margin-top:4px; }
+
+  /* COURSES */
+  .courses { background:var(--light); padding:90px 20px 70px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px; max-width:1100px; margin:0 auto; }
+  .card { background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%); border-radius:28px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,.08); transition:all .4s cubic-bezier(.34,1.56,.64,1); position:relative; opacity:0; transform:translateY(30px); animation:cardIn .6s ease forwards; }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--red),var(--gold),var(--accent)); border-radius:28px 28px 0 0; opacity:0; transition:opacity .3s; }
+  .card:hover::before { opacity:1; }
+  .card:hover { transform:translateY(-12px) scale(1.04); box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .card:nth-child(1){animation-delay:.05s;}.card:nth-child(2){animation-delay:.12s;}.card:nth-child(3){animation-delay:.19s;}.card:nth-child(4){animation-delay:.26s;}.card:nth-child(5){animation-delay:.33s;}.card:nth-child(6){animation-delay:.40s;}.card:nth-child(7){animation-delay:.47s;}.card:nth-child(8){animation-delay:.54s;}.card:nth-child(9){animation-delay:.61s;}
+  @keyframes cardIn { to{opacity:1;transform:translateY(0);} }
+  .card-icon { width:100%; height:185px; display:flex; align-items:center; justify-content:center; font-size:5.5rem; transition:all .4s cubic-bezier(.34,1.56,.64,1); }
+  .card:hover .card-icon { transform:scale(1.2) rotate(5deg); }
+  .card-body { padding:18px 20px 22px; }
+  .card-title { font-family:'Baloo 2',cursive; font-size:1.2rem; font-weight:800; color:var(--dark); margin-bottom:6px; }
+  .card-desc { font-size:.88rem; color:#666; line-height:1.55; }
+  .badge { position:absolute; top:18px; right:18px; padding:6px 16px; border-radius:50px; font-size:.8rem; font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:1px; z-index:2; }
+  .bg-1{background:linear-gradient(135deg,#ffecd2,#fcb69f);}.bg-2{background:linear-gradient(135deg,#a1c4fd,#c2e9fb);}.bg-3{background:linear-gradient(135deg,#d4fc79,#96e6a1);}.bg-4{background:linear-gradient(135deg,#f093fb,#f5576c);}.bg-5{background:linear-gradient(135deg,#4facfe,#00f2fe);}.bg-6{background:linear-gradient(135deg,#43e97b,#38f9d7);}.bg-7{background:linear-gradient(135deg,#f7971e,#ffd200);}.bg-8{background:linear-gradient(135deg,#30cfd0,#667eea);}.bg-9{background:linear-gradient(135deg,#fd7eb3,#ff9a9e);}
+  .badge-red{background:#c0161c;}.badge-blue{background:#3498db;}.badge-green{background:#27ae60;}.badge-purple{background:#8e44ad;}.badge-orange{background:#e67e22;}.badge-teal{background:#16a085;}.badge-gold{background:#d4a017;}
+
+  /* WHY */
+  .why { background:linear-gradient(160deg,#7a0008 0%,#c0161c 100%); padding:70px 20px; color:#fff; }
+  .why .section-title { color:var(--gold); }
+  .why .section-line { background:linear-gradient(90deg,var(--gold),#fff); }
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; max-width:1000px; margin:0 auto; }
+  .why-item { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius:18px; padding:30px 22px; text-align:center; backdrop-filter:blur(6px); transition:background .3s,transform .3s; }
+  .why-item:hover { background:rgba(255,255,255,.18); transform:translateY(-5px); }
+  .why-icon { font-size:2.8rem; margin-bottom:12px; }
+  .why-title { font-family:'Baloo 2',cursive; font-size:1.1rem; font-weight:800; margin-bottom:6px; color:var(--gold); }
+  .why-text { font-size:.88rem; opacity:.85; line-height:1.55; }
+
+  /* IIT FOUNDATION */
+  .iit-foundation { background:linear-gradient(160deg,#0f0c29 0%,#302b63 50%,#24243e 100%); padding:90px 20px 80px; position:relative; overflow:hidden; }
+  .iit-foundation::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 15% 20%,rgba(245,197,24,.08) 0%,transparent 50%),radial-gradient(circle at 85% 80%,rgba(192,22,28,.1) 0%,transparent 45%); pointer-events:none; }
+  .iit-foundation .section-title { color:var(--gold); }
+  .iit-foundation .section-title span { color:#fff; }
+  .iit-foundation .section-line { background:linear-gradient(90deg,var(--gold),var(--accent)); }
+  .iit-subtitle { text-align:center; color:rgba(255,255,255,.75); font-size:1.05rem; max-width:680px; margin:-30px auto 50px; line-height:1.7; }
+  .iit-subtitle strong { color:var(--gold); font-weight:800; }
+  .iit-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px; max-width:1100px; margin:0 auto 50px; }
+  .iit-card { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:28px; overflow:hidden; backdrop-filter:blur(15px); transition:all .4s cubic-bezier(.34,1.56,.64,1); }
+  .iit-card:hover { transform:translateY(-12px) scale(1.04); border-color:rgba(245,197,24,.5); }
+  .iit-card-header { padding:28px 24px 20px; text-align:center; }
+  .iit-class-badge { display:inline-block; padding:6px 20px; border-radius:50px; font-family:'Baloo 2',cursive; font-size:.85rem; font-weight:800; letter-spacing:.5px; text-transform:uppercase; margin-bottom:12px; }
+  .iit-class-7 .iit-class-badge{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#0a3d2a;}
+  .iit-class-8 .iit-class-badge{background:linear-gradient(135deg,#4facfe,#00f2fe);color:#0a2a4a;}
+  .iit-class-9 .iit-class-badge{background:linear-gradient(135deg,#f093fb,#f5576c);color:#3d0a2a;}
+  .iit-class-10 .iit-class-badge{background:linear-gradient(135deg,#f7971e,#ffd200);color:#3d2a0a;}
+  .iit-class-num { font-family:'Baloo 2',cursive; font-size:3rem; font-weight:800; line-height:1; background:linear-gradient(135deg,var(--gold),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .iit-class-label { font-family:'Baloo 2',cursive; font-size:1.1rem; font-weight:700; color:rgba(255,255,255,.9); margin-top:4px; }
+  .iit-card-body { padding:20px 24px 28px; }
+  .iit-card-body ul { list-style:none; padding:0; }
+  .iit-card-body li { position:relative; padding:6px 0 6px 24px; font-size:.88rem; color:rgba(255,255,255,.78); line-height:1.5; }
+  .iit-card-body li::before { content:'✦'; position:absolute; left:0; color:var(--gold); font-size:.7rem; top:9px; }
+  .iit-mode-badge { display:inline-flex; align-items:center; gap:8px; margin-top:10px; padding:6px 16px; border-radius:50px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); font-size:.78rem; font-weight:700; color:rgba(255,255,255,.9); }
+  .iit-mode-badge .mode-dot { width:7px; height:7px; border-radius:50%; display:inline-block; animation:modePulse 2s ease-in-out infinite; }
+  .iit-mode-badge .mode-dot.offline{background:#2ecc71;} .iit-mode-badge .mode-dot.online{background:#3498db;animation-delay:1s;}
+  @keyframes modePulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+  .iit-modes-banner { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:-20px auto 40px; }
+  .iit-modes-banner .mode-pill { display:flex; align-items:center; gap:10px; padding:12px 28px; border-radius:16px; font-family:'Baloo 2',cursive; font-size:1rem; font-weight:800; color:#fff; border:1px solid rgba(255,255,255,.15); transition:transform .3s; }
+  .iit-modes-banner .mode-pill:hover{transform:translateY(-3px);}
+  .iit-modes-banner .mode-pill.offline-pill{background:linear-gradient(135deg,rgba(46,204,113,.2),rgba(46,204,113,.08));border-color:rgba(46,204,113,.35);}
+  .iit-modes-banner .mode-pill.online-pill{background:linear-gradient(135deg,rgba(52,152,219,.2),rgba(52,152,219,.08));border-color:rgba(52,152,219,.35);}
+  .mode-pill-icon{font-size:1.3rem;}
+  .iit-features { display:flex; flex-wrap:wrap; justify-content:center; gap:18px 30px; max-width:900px; margin:0 auto 40px; }
+  .iit-feature { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:50px; padding:10px 22px; color:rgba(255,255,255,.85); font-size:.88rem; font-weight:700; transition:background .3s,transform .3s; }
+  .iit-feature:hover{background:rgba(245,197,24,.12);transform:translateY(-2px);}
+  .iit-feature-icon{font-size:1.2rem;}
+  .iit-cta-wrap{text-align:center;}
+  .iit-cta { display:inline-block; padding:16px 48px; background:linear-gradient(90deg,var(--gold),var(--accent)); color:#fff; font-family:'Baloo 2',cursive; font-size:1.15rem; font-weight:800; border-radius:50px; text-decoration:none; box-shadow:0 8px 30px rgba(245,197,24,.3); transition:transform .25s,box-shadow .25s; }
+  .iit-cta:hover{transform:translateY(-3px) scale(1.04);}
+
+  /* SPOKEN ENGLISH */
+  .spoken-english { background:linear-gradient(160deg,#0a2e38 0%,#0d4f5f 40%,#0a3a48 100%); padding:90px 20px 80px; position:relative; overflow:hidden; }
+  .spoken-english::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 10% 25%,rgba(52,152,219,.12) 0%,transparent 50%),radial-gradient(circle at 90% 75%,rgba(46,204,113,.1) 0%,transparent 45%); pointer-events:none; }
+  .spoken-english .section-title{color:#5ddef4;} .spoken-english .section-title span{color:#fff;} .spoken-english .section-line{background:linear-gradient(90deg,#5ddef4,#2ecc71);}
+  .se-subtitle { text-align:center; color:rgba(255,255,255,.78); font-size:1.08rem; max-width:720px; margin:-30px auto 16px; line-height:1.7; }
+  .se-subtitle strong{color:#5ddef4;font-weight:800;}
+  .se-online-badge-wrap{text-align:center;margin-bottom:50px;}
+  .se-online-badge { display:inline-flex; align-items:center; gap:12px; padding:14px 36px; border-radius:60px; background:linear-gradient(135deg,rgba(52,152,219,.22),rgba(93,222,244,.12)); border:2px solid rgba(93,222,244,.4); color:#fff; font-family:'Baloo 2',cursive; font-size:1.1rem; font-weight:800; }
+  .se-online-badge .se-live-dot { width:10px; height:10px; border-radius:50%; background:#2ecc71; animation:modePulse 1.5s ease-in-out infinite; box-shadow:0 0 8px rgba(46,204,113,.6); }
+  .se-hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1060px; margin:0 auto 50px; align-items:center; }
+  @media(max-width:768px){.se-hero-grid{grid-template-columns:1fr;}}
+  .se-content h3 { font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:16px; line-height:1.3; }
+  .se-content h3 em { font-style:normal; background:linear-gradient(135deg,#5ddef4,#2ecc71); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .se-content p { color:rgba(255,255,255,.75); font-size:.95rem; line-height:1.7; margin-bottom:24px; }
+  .se-highlights { list-style:none; padding:0; }
+  .se-highlights li { position:relative; padding:10px 0 10px 36px; font-size:.92rem; color:rgba(255,255,255,.85); line-height:1.5; font-weight:600; }
+  .se-highlights li::before { content:''; position:absolute; left:0; top:14px; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,#5ddef4,#2ecc71); opacity:.25; }
+  .se-highlights li::after { content:'✓'; position:absolute; left:5px; top:13px; color:#5ddef4; font-size:.8rem; font-weight:800; }
+  .se-visual { display:flex; flex-direction:column; gap:18px; }
+  .se-step { display:flex; align-items:center; gap:20px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:24px; padding:24px 28px; backdrop-filter:blur(12px); transition:all .4s cubic-bezier(.34,1.56,.64,1); }
+  .se-step:hover { transform:translateX(12px) scale(1.02); border-color:rgba(93,222,244,.5); background:rgba(93,222,244,.12); }
+  .se-step-num { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2',cursive; font-size:1.3rem; font-weight:800; color:#fff; flex-shrink:0; }
+  .se-step:nth-child(1) .se-step-num{background:linear-gradient(135deg,#3498db,#5ddef4);}
+  .se-step:nth-child(2) .se-step-num{background:linear-gradient(135deg,#9b59b6,#f093fb);}
+  .se-step:nth-child(3) .se-step-num{background:linear-gradient(135deg,#2ecc71,#43e97b);}
+  .se-step:nth-child(4) .se-step-num{background:linear-gradient(135deg,#f5c518,#ff6b35);}
+  .se-step-info{flex:1;}
+  .se-step-title { font-family:'Baloo 2',cursive; font-size:1rem; font-weight:800; color:#fff; margin-bottom:2px; }
+  .se-step-desc { font-size:.82rem; color:rgba(255,255,255,.6); line-height:1.4; }
+  .se-features { display:flex; flex-wrap:wrap; justify-content:center; gap:16px 24px; max-width:950px; margin:0 auto 40px; }
+  .se-feature { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:50px; padding:10px 22px; color:rgba(255,255,255,.88); font-size:.88rem; font-weight:700; transition:background .3s,transform .3s; }
+  .se-feature:hover{background:rgba(93,222,244,.12);transform:translateY(-2px);}
+  .se-feature-icon{font-size:1.2rem;}
+  .se-cta-wrap{text-align:center;}
+  .se-cta { display:inline-block; padding:16px 48px; background:linear-gradient(90deg,#5ddef4,#2ecc71); color:#0a2e38; font-family:'Baloo 2',cursive; font-size:1.15rem; font-weight:800; border-radius:50px; text-decoration:none; box-shadow:0 8px 30px rgba(93,222,244,.25); transition:transform .25s,box-shadow .25s; }
+  .se-cta:hover{transform:translateY(-3px) scale(1.04);}
+
+  /* CONTACT */
+  .contact { background:var(--light); padding:80px 20px; }
+  .contact-wrap { max-width:920px; margin:0 auto; background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%); border-radius:36px; box-shadow:0 16px 70px rgba(0,0,0,.12); overflow:hidden; display:grid; grid-template-columns:1fr 1fr; position:relative; }
+  .contact-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--red),var(--gold),var(--accent)); border-radius:36px 36px 0 0; }
+  @media(max-width:640px){.contact-wrap{grid-template-columns:1fr;}}
+  .contact-left { background:linear-gradient(160deg,#7a0008,#c0161c); padding:50px 36px; color:#fff; }
+  .contact-left h2 { font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800; margin-bottom:6px; }
+  .contact-left .sub { font-size:.9rem; opacity:.8; margin-bottom:36px; }
+  .info-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+  .info-icon { width:42px; height:42px; flex-shrink:0; background:rgba(255,255,255,.15); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+  .info-label { font-size:.78rem; opacity:.7; margin-bottom:2px; }
+  .info-val { font-weight:700; font-size:.97rem; }
+  .contact-right { padding:50px 36px; }
+  .contact-right h3 { font-family:'Baloo 2',cursive; font-size:1.5rem; font-weight:800; color:var(--dark); margin-bottom:24px; }
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:.82rem; font-weight:700; color:#555; margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
+  .form-group input,.form-group select,.form-group textarea { width:100%; padding:12px 16px; border:2px solid #eee; border-radius:12px; font-family:'Nunito',sans-serif; font-size:.9rem; transition:border-color .2s; outline:none; background:#fafafa; }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--red); background:#fff; }
+  .form-group textarea { resize:none; height:90px; }
+
+  /* Submit button */
+  .btn-submit { width:100%; padding:18px; background:linear-gradient(135deg,var(--dark) 0%,var(--red) 50%,var(--accent) 100%); color:#fff; border:none; border-radius:16px; font-family:'Baloo 2',cursive; font-size:1.15rem; font-weight:800; cursor:pointer; transition:all .4s cubic-bezier(.34,1.56,.64,1); letter-spacing:1px; box-shadow:0 8px 28px rgba(192,22,28,.4); position:relative; overflow:hidden; }
+  .btn-submit:disabled { opacity:.7; cursor:not-allowed; transform:none !important; }
+  .btn-submit::before { content:''; position:absolute; top:0; left:-100%; right:0; bottom:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent); transition:left .8s ease; }
+  .btn-submit:hover:not(:disabled)::before { left:100%; }
+  .btn-submit:hover:not(:disabled) { transform:translateY(-4px) scale(1.02); box-shadow:0 16px 40px rgba(192,22,28,.6); }
+
+  /* Form status */
+  .form-status { display:none; margin-top:16px; padding:16px 20px; border-radius:14px; font-family:'Baloo 2',cursive; font-size:1rem; font-weight:700; text-align:center; animation:fadeIn .4s ease; }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .form-status.success { display:block; background:linear-gradient(135deg,#d4edda,#c3e6cb); color:#155724; border:2px solid #b1dfbb; }
+  .form-status.error { display:block; background:linear-gradient(135deg,#f8d7da,#f5c6cb); color:#721c24; border:2px solid #f1b0b7; }
+  .form-status.sending { display:block; background:linear-gradient(135deg,#fff3cd,#ffeaa7); color:#856404; border:2px solid #ffda6a; }
+
+  /* Setup banner */
+  .setup-banner { background:linear-gradient(135deg,#fff3cd,#ffeaa7); border:2px solid #ffda6a; border-radius:14px; padding:14px 18px; margin-bottom:20px; font-size:.82rem; color:#664d03; line-height:1.6; display:none; }
+  .setup-banner strong { display:block; margin-bottom:4px; font-size:.88rem; }
+  .setup-banner a { color:#664d03; font-weight:800; }
+
+  /* DIRECTOR */
+  .director { background:#fff; padding:70px 20px; text-align:center; }
+  .director-card { display:inline-flex; flex-direction:column; align-items:center; gap:20px; background:linear-gradient(160deg,#7a0008 0%,#c0161c 50%,#8b0000 100%); color:#fff; padding:56px 72px; border-radius:36px; box-shadow:0 20px 80px rgba(192,22,28,.4); max-width:520px; transition:all .4s cubic-bezier(.34,1.56,.64,1); }
+  .director-card:hover { transform:translateY(-8px) scale(1.02); }
+  .avatar { width:130px; height:130px; background:rgba(255,255,255,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3rem; border:5px solid var(--gold); overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,.3); }
+  .avatar img { width:100%; height:100%; object-fit:cover; }
+  .dir-label { font-size:.82rem; opacity:.75; letter-spacing:2px; text-transform:uppercase; }
+  .dir-name { font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800; color:var(--gold); line-height:1.1; }
+  .dir-qual { font-size:.9rem; opacity:.82; line-height:1.7; }
+  .motto { display:inline-block; margin-top:10px; padding:7px 22px; background:var(--gold); color:var(--dark); border-radius:50px; font-weight:800; font-size:.9rem; letter-spacing:1px; text-transform:uppercase; }
+
+  /* FOOTER */
+  footer { background:#1a0003; color:rgba(255,255,255,.6); text-align:center; padding:24px 20px; font-size:.85rem; }
+  footer strong { color:var(--gold); }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(122,0,8,.95); backdrop-filter:blur(20px); padding:16px 35px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.12); box-shadow:0 4px 30px rgba(0,0,0,.15); animation:navDrop .6s ease both; }
+  @keyframes navDrop{from{transform:translateY(-100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .nav-logo { font-family:'Baloo 2',cursive; font-size:1.45rem; font-weight:900; color:var(--gold); text-decoration:none; letter-spacing:1px; z-index:1002; transition:all .3s; }
+  .nav-logo:hover{transform:scale(1.05);}
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,.85); text-decoration:none; font-weight:700; font-size:.95rem; transition:all .3s; }
+  .nav-links a:hover{color:var(--gold);transform:translateY(-2px);}
+  .hamburger { display:none; flex-direction:column; justify-content:center; align-items:center; width:46px; height:46px; background:#111; border:2px solid rgba(255,255,255,.15); border-radius:12px; cursor:pointer; z-index:10002; padding:0; box-shadow:0 4px 16px rgba(0,0,0,.35); transition:all .3s; }
+  .hamburger:hover{background:#222;border-color:var(--gold);}
+  .hamburger span { display:block; width:22px; height:2.5px; background:var(--white); border-radius:3px; transition:transform .35s cubic-bezier(.4,.01,.165,.99),opacity .2s ease,width .3s ease; }
+  .hamburger span:nth-child(1){margin-bottom:5px;} .hamburger span:nth-child(2){width:16px;} .hamburger span:nth-child(3){margin-top:5px;}
+  .hamburger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg);background:var(--gold);}
+  .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0);}
+  .hamburger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);background:var(--gold);}
+  @media(max-width:768px){
+    .hamburger{display:flex;}
+    .nav-links{position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:#000;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:80px 20px 40px;z-index:10001;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,visibility .4s,transform .4s;}
+    .nav-links.open{opacity:1;visibility:visible;transform:translateY(0);}
+    .nav-links li{width:100%;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .35s ease,transform .35s ease;}
+    .nav-links.open li{opacity:1;transform:translateY(0);}
+    .nav-links.open li:nth-child(1){transition-delay:.08s;} .nav-links.open li:nth-child(2){transition-delay:.14s;} .nav-links.open li:nth-child(3){transition-delay:.20s;} .nav-links.open li:nth-child(4){transition-delay:.26s;} .nav-links.open li:nth-child(5){transition-delay:.32s;} .nav-links.open li:nth-child(6){transition-delay:.38s;}
+    .nav-links a{display:block;padding:18px 10px;font-size:1.25rem;font-family:'Baloo 2',cursive;font-weight:800;color:rgba(255,255,255,.9);border-bottom:1px solid rgba(255,255,255,.08);}
+    .nav-links li:last-child a{border-bottom:none;}
+    .nav-links a:hover{color:var(--gold);}
+    .grid{grid-template-columns:repeat(2,1fr);gap:20px;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .contact-left,.contact-right{padding:36px 28px;}
+    .director-card{padding:36px 32px;max-width:400px;}
+  }
+  @media(max-width:480px){
+    nav{padding:12px 16px;}
+    .hero{padding:70px 14px 60px;}
+    .school-name{font-size:clamp(2rem,14vw,3.5rem);}
+    .grid{grid-template-columns:1fr;gap:18px;}
+    .contact-left{padding:30px 20px;} .contact-right{padding:30px 20px;}
+    .director-card{padding:32px 24px;}
+    .section-title{font-size:clamp(1.5rem,6vw,2.2rem);}
+  }
+  body.nav-open{overflow:hidden;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">🎓 Rio Skills School</a>
   <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
     <li><a href="#courses">Courses</a></li>
@@ -1746,20 +312,15 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
-  <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-  <div class="dot"></div><div class="dot"></div>
-
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
   <p class="tagline">✨ Skills Today.. Success Tomorrow ✨</p>
   <h1 class="school-name">Rio</h1>
   <h2 class="school-sub">Skills School</h2>
   <a href="#courses" class="hero-cta">Explore Our Courses →</a>
-
   <div class="hero-badge">🏆 Master The Future</div>
 </section>
 
-<!-- STATS -->
 <section class="stats reveal">
   <div class="stats-grid">
     <div class="stat-box"><div class="stat-num">9+</div><div class="stat-label">Skill Programs</div></div>
@@ -1769,180 +330,36 @@
   </div>
 </section>
 
-<!-- COURSES -->
 <section class="courses" id="courses">
   <h2 class="section-title reveal">Our <span>Programs</span></h2>
   <div class="section-line reveal"></div>
-
   <div class="grid">
-
-    <div class="card">
-      <div class="card-icon bg-1">✍️</div>
-      <span class="badge badge-red">Art</span>
-      <div class="card-body">
-        <div class="card-title">Calligraphy</div>
-        <div class="card-desc">Master the ancient art of beautiful handwriting. Develop precision, patience, and a lifelong creative skill.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-2">🎨</div>
-      <span class="badge badge-blue">Art</span>
-      <div class="card-body">
-        <div class="card-title">Drawing</div>
-        <div class="card-desc">Unleash creativity through sketching, shading, and illustration. From basics to advanced techniques.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-3">♟️</div>
-      <span class="badge badge-green">Mind</span>
-      <div class="card-body">
-        <div class="card-title">Chess</div>
-        <div class="card-desc">Sharpen strategic thinking and concentration. Build analytical skills through the royal game.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-4">💃</div>
-      <span class="badge badge-purple">Dance</span>
-      <div class="card-body">
-        <div class="card-title">Classical Dance</div>
-        <div class="card-desc">Learn Bharatanatyam and classical Indian dance forms. Connect with rich cultural heritage through movement.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-5">🥋</div>
-      <span class="badge badge-blue">Martial Arts</span>
-      <div class="card-body">
-        <div class="card-title">Karate</div>
-        <div class="card-desc">Build discipline, self-defense skills and confidence. Structured belt progression for all ages.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-6">🕺</div>
-      <span class="badge badge-teal">Dance</span>
-      <div class="card-body">
-        <div class="card-title">Western Dance</div>
-        <div class="card-desc">Hip-hop, contemporary, and freestyle. Express yourself through modern dance styles and rhythms.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-7">🔢</div>
-      <span class="badge badge-gold">Maths</span>
-      <div class="card-body">
-        <div class="card-title">Abacus Maths</div>
-        <div class="card-desc">Develop lightning-fast mental arithmetic using the ancient abacus method. Boost concentration and memory.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-8">🗣️</div>
-      <span class="badge badge-blue">Language</span>
-      <div class="card-body">
-        <div class="card-title">Spoken English</div>
-        <div class="card-desc">Build fluency, confidence, and communication skills. Practical conversations for real-world success.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon bg-9">🎵</div>
-      <span class="badge badge-purple">Music</span>
-      <div class="card-body">
-        <div class="card-title">Music</div>
-        <div class="card-desc">Vocal training and instruments for all levels. Cultivate rhythm, melody, and musical expression.</div>
-      </div>
-    </div>
-
+    <div class="card"><div class="card-icon bg-1">✍️</div><span class="badge badge-red">Art</span><div class="card-body"><div class="card-title">Calligraphy</div><div class="card-desc">Master the ancient art of beautiful handwriting. Develop precision, patience, and a lifelong creative skill.</div></div></div>
+    <div class="card"><div class="card-icon bg-2">🎨</div><span class="badge badge-blue">Art</span><div class="card-body"><div class="card-title">Drawing</div><div class="card-desc">Unleash creativity through sketching, shading, and illustration. From basics to advanced techniques.</div></div></div>
+    <div class="card"><div class="card-icon bg-3">♟️</div><span class="badge badge-green">Mind</span><div class="card-body"><div class="card-title">Chess</div><div class="card-desc">Sharpen strategic thinking and concentration. Build analytical skills through the royal game.</div></div></div>
+    <div class="card"><div class="card-icon bg-4">💃</div><span class="badge badge-purple">Dance</span><div class="card-body"><div class="card-title">Classical Dance</div><div class="card-desc">Learn Bharatanatyam and classical Indian dance forms. Connect with rich cultural heritage through movement.</div></div></div>
+    <div class="card"><div class="card-icon bg-5">🥋</div><span class="badge badge-blue">Martial Arts</span><div class="card-body"><div class="card-title">Karate</div><div class="card-desc">Build discipline, self-defense skills and confidence. Structured belt progression for all ages.</div></div></div>
+    <div class="card"><div class="card-icon bg-6">🕺</div><span class="badge badge-teal">Dance</span><div class="card-body"><div class="card-title">Western Dance</div><div class="card-desc">Hip-hop, contemporary, and freestyle. Express yourself through modern dance styles and rhythms.</div></div></div>
+    <div class="card"><div class="card-icon bg-7">🔢</div><span class="badge badge-gold">Maths</span><div class="card-body"><div class="card-title">Abacus Maths</div><div class="card-desc">Develop lightning-fast mental arithmetic using the ancient abacus method. Boost concentration and memory.</div></div></div>
+    <div class="card"><div class="card-icon bg-8">🗣️</div><span class="badge badge-blue">Language</span><div class="card-body"><div class="card-title">Spoken English</div><div class="card-desc">Build fluency, confidence, and communication skills. Practical conversations for real-world success.</div></div></div>
+    <div class="card"><div class="card-icon bg-9">🎵</div><span class="badge badge-purple">Music</span><div class="card-body"><div class="card-title">Music</div><div class="card-desc">Vocal training and instruments for all levels. Cultivate rhythm, melody, and musical expression.</div></div></div>
   </div>
 </section>
 
-<!-- IIT FOUNDATION -->
 <section class="iit-foundation" id="iit-foundation">
   <h2 class="section-title reveal">IIT <span>Foundation</span></h2>
   <div class="section-line reveal"></div>
   <p class="iit-subtitle reveal">Building <strong>future IITians</strong> from the ground up. Our structured foundation program sharpens analytical thinking, problem-solving, and conceptual mastery for <strong>7th to 10th class</strong> students — available both <strong>Offline & Online</strong>!</p>
-
   <div class="iit-modes-banner reveal">
     <div class="mode-pill offline-pill"><span class="mode-pill-icon">🏫</span> Offline Classes Available</div>
     <div class="mode-pill online-pill"><span class="mode-pill-icon">💻</span> Online Classes Available</div>
   </div>
-
   <div class="iit-grid reveal">
-
-    <div class="iit-card iit-class-7">
-      <div class="iit-card-header">
-        <div class="iit-class-badge">Class 7</div>
-        <div class="iit-class-num">7<sup style="font-size:1.2rem">th</sup></div>
-        <div class="iit-class-label">Foundation Starter</div>
-        <div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div>
-      </div>
-      <div class="iit-card-body">
-        <ul>
-          <li>Strong fundamentals in Maths & Science</li>
-          <li>Logical reasoning & mental aptitude</li>
-          <li>Introduction to Olympiad patterns</li>
-          <li>NCERT+ advanced problem sets</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="iit-card iit-class-8">
-      <div class="iit-card-header">
-        <div class="iit-class-badge">Class 8</div>
-        <div class="iit-class-num">8<sup style="font-size:1.2rem">th</sup></div>
-        <div class="iit-class-label">Concept Builder</div>
-        <div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div>
-      </div>
-      <div class="iit-card-body">
-        <ul>
-          <li>In-depth Physics & Chemistry concepts</li>
-          <li>Algebra, geometry & number theory</li>
-          <li>National Olympiad preparation</li>
-          <li>Periodic tests & performance tracking</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="iit-card iit-class-9">
-      <div class="iit-card-header">
-        <div class="iit-class-badge">Class 9</div>
-        <div class="iit-class-num">9<sup style="font-size:1.2rem">th</sup></div>
-        <div class="iit-class-label">Advanced Prep</div>
-        <div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div>
-      </div>
-      <div class="iit-card-body">
-        <ul>
-          <li>Board + competitive exam dual focus</li>
-          <li>JEE-level problem introduction</li>
-          <li>NTSE & science Olympiad coaching</li>
-          <li>Weekly mock tests & doubt sessions</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="iit-card iit-class-10">
-      <div class="iit-card-header">
-        <div class="iit-class-badge">Class 10</div>
-        <div class="iit-class-num">10<sup style="font-size:1.2rem">th</sup></div>
-        <div class="iit-class-label">Board + IIT Bridge</div>
-        <div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div>
-      </div>
-      <div class="iit-card-body">
-        <ul>
-          <li>Board exam mastery + IIT bridge course</li>
-          <li>Advanced Physics, Chemistry & Maths</li>
-          <li>Full-length mock exams & analysis</li>
-          <li>Personal mentoring & career guidance</li>
-        </ul>
-      </div>
-    </div>
-
+    <div class="iit-card iit-class-7"><div class="iit-card-header"><div class="iit-class-badge">Class 7</div><div class="iit-class-num">7<sup style="font-size:1.2rem">th</sup></div><div class="iit-class-label">Foundation Starter</div><div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div></div><div class="iit-card-body"><ul><li>Strong fundamentals in Maths & Science</li><li>Logical reasoning & mental aptitude</li><li>Introduction to Olympiad patterns</li><li>NCERT+ advanced problem sets</li></ul></div></div>
+    <div class="iit-card iit-class-8"><div class="iit-card-header"><div class="iit-class-badge">Class 8</div><div class="iit-class-num">8<sup style="font-size:1.2rem">th</sup></div><div class="iit-class-label">Concept Builder</div><div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div></div><div class="iit-card-body"><ul><li>In-depth Physics & Chemistry concepts</li><li>Algebra, geometry & number theory</li><li>National Olympiad preparation</li><li>Periodic tests & performance tracking</li></ul></div></div>
+    <div class="iit-card iit-class-9"><div class="iit-card-header"><div class="iit-class-badge">Class 9</div><div class="iit-class-num">9<sup style="font-size:1.2rem">th</sup></div><div class="iit-class-label">Advanced Prep</div><div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div></div><div class="iit-card-body"><ul><li>Board + competitive exam dual focus</li><li>JEE-level problem introduction</li><li>NTSE & science Olympiad coaching</li><li>Weekly mock tests & doubt sessions</li></ul></div></div>
+    <div class="iit-card iit-class-10"><div class="iit-card-header"><div class="iit-class-badge">Class 10</div><div class="iit-class-num">10<sup style="font-size:1.2rem">th</sup></div><div class="iit-class-label">Board + IIT Bridge</div><div class="iit-mode-badge"><span class="mode-dot offline"></span>Offline <span style="opacity:.5">|</span> <span class="mode-dot online"></span>Online</div></div><div class="iit-card-body"><ul><li>Board exam mastery + IIT bridge course</li><li>Advanced Physics, Chemistry & Maths</li><li>Full-length mock exams & analysis</li><li>Personal mentoring & career guidance</li></ul></div></div>
   </div>
-
   <div class="iit-features reveal">
     <div class="iit-feature"><span class="iit-feature-icon">🧪</span> Expert Faculty</div>
     <div class="iit-feature"><span class="iit-feature-icon">📚</span> Structured Curriculum</div>
@@ -1953,25 +370,14 @@
     <div class="iit-feature"><span class="iit-feature-icon">🏫</span> Offline Batches</div>
     <div class="iit-feature"><span class="iit-feature-icon">💻</span> Live Online Classes</div>
   </div>
-
-  <div class="iit-cta-wrap reveal">
-    <a href="#contact" class="iit-cta">Enroll for IIT Foundation →</a>
-  </div>
+  <div class="iit-cta-wrap reveal"><a href="#contact" class="iit-cta">Enroll for IIT Foundation →</a></div>
 </section>
 
-<!-- SPOKEN ENGLISH -->
 <section class="spoken-english" id="spoken-english">
   <h2 class="section-title reveal">Spoken <span>English</span></h2>
   <div class="section-line reveal"></div>
   <p class="se-subtitle reveal">Build <strong>fluency, confidence & real-world communication skills</strong> from the comfort of your home. Our Spoken English program is taught <strong>exclusively online</strong> — practical conversations for real-world success.</p>
-
-  <div class="se-online-badge-wrap reveal">
-    <div class="se-online-badge">
-      <span class="se-live-dot"></span>
-      💻 100% Online — Live Interactive Classes
-    </div>
-  </div>
-
+  <div class="se-online-badge-wrap reveal"><div class="se-online-badge"><span class="se-live-dot"></span>💻 100% Online — Live Interactive Classes</div></div>
   <div class="se-hero-grid reveal">
     <div class="se-content">
       <h3>Speak English with <em>Confidence & Clarity</em></h3>
@@ -1985,39 +391,13 @@
         <li>Flexible timings for students & professionals</li>
       </ul>
     </div>
-
     <div class="se-visual">
-      <div class="se-step">
-        <div class="se-step-num">01</div>
-        <div class="se-step-info">
-          <div class="se-step-title">Foundation & Basics</div>
-          <div class="se-step-desc">Grammar essentials, vocabulary building & pronunciation drills</div>
-        </div>
-      </div>
-      <div class="se-step">
-        <div class="se-step-num">02</div>
-        <div class="se-step-info">
-          <div class="se-step-title">Conversation Practice</div>
-          <div class="se-step-desc">Daily speaking exercises, role-plays & real-world scenarios</div>
-        </div>
-      </div>
-      <div class="se-step">
-        <div class="se-step-num">03</div>
-        <div class="se-step-info">
-          <div class="se-step-title">Fluency Development</div>
-          <div class="se-step-desc">Group discussions, debates & storytelling sessions</div>
-        </div>
-      </div>
-      <div class="se-step">
-        <div class="se-step-num">04</div>
-        <div class="se-step-info">
-          <div class="se-step-title">Advanced Communication</div>
-          <div class="se-step-desc">Interview prep, presentations & professional English skills</div>
-        </div>
-      </div>
+      <div class="se-step"><div class="se-step-num">01</div><div class="se-step-info"><div class="se-step-title">Foundation & Basics</div><div class="se-step-desc">Grammar essentials, vocabulary building & pronunciation drills</div></div></div>
+      <div class="se-step"><div class="se-step-num">02</div><div class="se-step-info"><div class="se-step-title">Conversation Practice</div><div class="se-step-desc">Daily speaking exercises, role-plays & real-world scenarios</div></div></div>
+      <div class="se-step"><div class="se-step-num">03</div><div class="se-step-info"><div class="se-step-title">Fluency Development</div><div class="se-step-desc">Group discussions, debates & storytelling sessions</div></div></div>
+      <div class="se-step"><div class="se-step-num">04</div><div class="se-step-info"><div class="se-step-title">Advanced Communication</div><div class="se-step-desc">Interview prep, presentations & professional English skills</div></div></div>
     </div>
   </div>
-
   <div class="se-features reveal">
     <div class="se-feature"><span class="se-feature-icon">💻</span> 100% Online Classes</div>
     <div class="se-feature"><span class="se-feature-icon">🎙️</span> Live Interactive Sessions</div>
@@ -2028,64 +408,34 @@
     <div class="se-feature"><span class="se-feature-icon">📝</span> Regular Assessments</div>
     <div class="se-feature"><span class="se-feature-icon">🏆</span> Certification</div>
   </div>
-
-  <div class="se-cta-wrap reveal">
-    <a href="#contact" class="se-cta">Enroll for Spoken English →</a>
-  </div>
+  <div class="se-cta-wrap reveal"><a href="#contact" class="se-cta">Enroll for Spoken English →</a></div>
 </section>
 
-<!-- WHY US -->
 <section class="why" id="why">
   <h2 class="section-title reveal">Why Choose <span style="color:#fff">Rio?</span></h2>
   <div class="section-line reveal"></div>
   <div class="why-grid reveal">
-    <div class="why-item">
-      <div class="why-icon">🏅</div>
-      <div class="why-title">Expert Instructors</div>
-      <div class="why-text">Certified, passionate teachers with years of training experience in their field.</div>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">👶</div>
-      <div class="why-title">All Age Groups</div>
-      <div class="why-text">Programs tailored for children, teens and adults at every skill level.</div>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">📈</div>
-      <div class="why-title">Holistic Growth</div>
-      <div class="why-text">We nurture creativity, discipline, confidence and cognitive development together.</div>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🎯</div>
-      <div class="why-title">Structured Curriculum</div>
-      <div class="why-text">Step-by-step learning paths with regular assessments and progress tracking.</div>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🌟</div>
-      <div class="why-title">Proven Results</div>
-      <div class="why-text">Hundreds of students have excelled in competitions and developed lifelong skills.</div>
-    </div>
+    <div class="why-item"><div class="why-icon">🏅</div><div class="why-title">Expert Instructors</div><div class="why-text">Certified, passionate teachers with years of training experience in their field.</div></div>
+    <div class="why-item"><div class="why-icon">👶</div><div class="why-title">All Age Groups</div><div class="why-text">Programs tailored for children, teens and adults at every skill level.</div></div>
+    <div class="why-item"><div class="why-icon">📈</div><div class="why-title">Holistic Growth</div><div class="why-text">We nurture creativity, discipline, confidence and cognitive development together.</div></div>
+    <div class="why-item"><div class="why-icon">🎯</div><div class="why-title">Structured Curriculum</div><div class="why-text">Step-by-step learning paths with regular assessments and progress tracking.</div></div>
+    <div class="why-item"><div class="why-icon">🌟</div><div class="why-title">Proven Results</div><div class="why-text">Hundreds of students have excelled in competitions and developed lifelong skills.</div></div>
   </div>
 </section>
 
-<!-- DIRECTOR -->
 <section class="director" id="director">
   <h2 class="section-title reveal">Meet Our <span>Director</span></h2>
   <div class="section-line reveal"></div>
   <div class="director-card reveal">
-    <div class="avatar">
-      <img src="https://lh3.googleusercontent.com/d/1lV1sytwxh4tRE7nuQ03Ws-f9ihR_pI9w" alt="V. Ramesh - Director">
-    </div>
+    <div class="avatar"><img src="https://lh3.googleusercontent.com/d/1lV1sytwxh4tRE7nuQ03Ws-f9ihR_pI9w" alt="V. Ramesh - Director"></div>
     <div class="dir-label">Founder & Director</div>
     <div class="dir-name">V. Ramesh</div>
-    <div class="dir-qual">
-      M.A &nbsp;|&nbsp; B.Ed &nbsp;|&nbsp; T.T.C<br>
-      Diploma in Calligraphy
-    </div>
+    <div class="dir-qual">M.A &nbsp;|&nbsp; B.Ed &nbsp;|&nbsp; T.T.C<br>Diploma in Calligraphy</div>
     <span class="motto">🏆 Master the Future</span>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ═══════ CONTACT SECTION ═══════ -->
 <section class="contact" id="contact">
   <h2 class="section-title reveal">Get In <span>Touch</span></h2>
   <div class="section-line reveal"></div>
@@ -2094,46 +444,31 @@
     <div class="contact-left">
       <h2>Rio Skills School</h2>
       <p class="sub">Enroll your child today and watch them shine!</p>
-
-      <div class="info-row">
-        <div class="info-icon">📍</div>
-        <div>
-          <div class="info-label">Address</div>
-          <div class="info-val">Beside Y.S.R Statue, A.Konduru Road, Vissannapeta</div>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <div class="info-icon">📞</div>
-        <div>
-          <div class="info-label">Phone</div>
-          <div class="info-val">80966 54401</div>
-          <div class="info-val">70957 14401</div>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <div class="info-icon">⏰</div>
-        <div>
-          <div class="info-label">Timings</div>
-          <div class="info-val">Mon – Sat &nbsp; 9 AM – 6 PM</div>
-        </div>
-      </div>
+      <div class="info-row"><div class="info-icon">📍</div><div><div class="info-label">Address</div><div class="info-val">Beside Y.S.R Statue, A.Konduru Road, Vissannapeta</div></div></div>
+      <div class="info-row"><div class="info-icon">📞</div><div><div class="info-label">Phone</div><div class="info-val">80966 54401</div><div class="info-val">70957 14401</div></div></div>
+      <div class="info-row"><div class="info-icon">⏰</div><div><div class="info-label">Timings</div><div class="info-val">Mon – Sat &nbsp; 9 AM – 6 PM</div></div></div>
     </div>
 
     <div class="contact-right">
       <h3>Send an Enquiry</h3>
+
+      <!-- Shown only when EmailJS keys are not yet set -->
+      <div class="setup-banner" id="setup-banner">
+        <strong>⚠️ One-time email setup needed</strong>
+        Open this HTML file and replace <code>YOUR_PUBLIC_KEY</code>, <code>YOUR_SERVICE_ID</code>, <code>YOUR_TEMPLATE_ID</code> near the top with your free <a href="https://www.emailjs.com" target="_blank">EmailJS</a> credentials. Full instructions are in the HTML comments.
+      </div>
+
       <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" placeholder="e.g. Ravi Kumar">
+        <label for="f-name">Your Name <span style="color:var(--red)">*</span></label>
+        <input type="text" id="f-name" placeholder="e.g. Ravi Kumar">
       </div>
       <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" placeholder="e.g. 98765 43210">
+        <label for="f-phone">Phone Number <span style="color:var(--red)">*</span></label>
+        <input type="tel" id="f-phone" placeholder="e.g. 98765 43210">
       </div>
       <div class="form-group">
-        <label>Course Interest</label>
-        <select>
+        <label for="f-course">Course Interest <span style="color:var(--red)">*</span></label>
+        <select id="f-course">
           <option value="">— Select a course —</option>
           <option>Calligraphy</option>
           <option>Drawing</option>
@@ -2148,71 +483,115 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Message (optional)</label>
-        <textarea placeholder="Any questions or details..."></textarea>
+        <label for="f-message">Message (optional)</label>
+        <textarea id="f-message" placeholder="Any questions or details..."></textarea>
       </div>
-      <button class="btn-submit" onclick="alert('Thank you! We will contact you shortly. 🎉')">Submit Enquiry ✉️</button>
+
+      <button class="btn-submit" id="submit-btn" onclick="submitEnquiry()">Submit Enquiry ✉️</button>
+      <div class="form-status" id="form-status"></div>
     </div>
 
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>&copy; 2026 Rio Skills School. All rights reserved.</p>
   <p>Designed with ❤️ by Rio Team</p>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
+  // Show setup banner if keys not yet configured
+  window.addEventListener('DOMContentLoaded', () => {
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+      document.getElementById('setup-banner').style.display = 'block';
+    }
+  });
+
+  // ── Email submission ──────────────────────────────────────────
+  async function submitEnquiry() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const course  = document.getElementById('f-course').value;
+    const message = document.getElementById('f-message').value.trim();
+    const btn     = document.getElementById('submit-btn');
+    const status  = document.getElementById('form-status');
+
+    if (!name)   { showStatus('error', '⚠️ Please enter your name.'); return; }
+    if (!phone)  { showStatus('error', '⚠️ Please enter your phone number.'); return; }
+    if (!course) { showStatus('error', '⚠️ Please select a course.'); return; }
+
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+      showStatus('error', '⚙️ EmailJS not configured yet. Please follow the setup instructions in the HTML file.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending… ⏳';
+    showStatus('sending', '📤 Sending your enquiry, please wait...');
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name : name,
+        phone     : phone,
+        course    : course,
+        message   : message || '(No message provided)',
+      });
+
+      showStatus('success', '🎉 Enquiry sent! We will contact you shortly on ' + phone + '.');
+      btn.textContent = '✅ Sent!';
+
+      setTimeout(() => {
+        document.getElementById('f-name').value    = '';
+        document.getElementById('f-phone').value   = '';
+        document.getElementById('f-course').value  = '';
+        document.getElementById('f-message').value = '';
+        btn.disabled = false;
+        btn.textContent = 'Submit Enquiry ✉️';
+        status.style.display = 'none';
+      }, 5000);
+
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      showStatus('error', '❌ Could not send. Please call us directly: 80966 54401');
+      btn.disabled = false;
+      btn.textContent = 'Submit Enquiry ✉️';
+    }
+  }
+
+  function showStatus(type, msg) {
+    const el = document.getElementById('form-status');
+    el.className = 'form-status ' + type;
+    el.textContent = msg;
+  }
+
+  // ── Scroll reveal ─────────────────────────────────────────────
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  reveals.forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Hamburger menu toggle
+  // ── Hamburger ─────────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger-btn');
-  const navLinks = document.getElementById('nav-links');
-
+  const navLinks  = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
     hamburger.classList.toggle('active');
     hamburger.setAttribute('aria-expanded', isOpen);
     document.body.classList.toggle('nav-open', isOpen);
   });
-
-  // Close menu when a nav link is clicked
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
+      navLinks.classList.remove('open'); hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false'); document.body.classList.remove('nav-open');
     });
   });
-
-  // Close menu on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
-    }
-  });
-
-  // Close menu when clicking on the overlay background (not on a link)
-  navLinks.addEventListener('click', (e) => {
-    if (e.target === navLinks) {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
+      navLinks.classList.remove('open'); hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false'); document.body.classList.remove('nav-open');
     }
   });
 </script>
 </body>
 </html>
+
